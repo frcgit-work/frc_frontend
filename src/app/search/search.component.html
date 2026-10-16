@@ -1,0 +1,125 @@
+<div class="p-10 infograp mt-2">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu![0]?.menuname}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="text-left pl-3 pl-sm-0 mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h5 text-uppercase">
+                            <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                Хайлт: {{searchtext}}
+                            </div>
+                            <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                Search: {{searchtext}}
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <label for="searchtext">Хайх</label>
+                        <input type="text" class="form-control" [(ngModel)]="searchtext" placeholder="Хайх">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="sdate">Эхлэх огноо</label>
+                        <input type="date" class="form-control" [(ngModel)]="sdate" placeholder="Эхлэх огноо">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="sdate">Дуусах огноо</label>
+                        <input type="date" class="form-control" [(ngModel)]="edate" placeholder="Дуусах огноо">
+                    </div>
+                    <div class="col-md-2">
+                        <div>&nbsp;</div>
+                        <button type="submit" class="form-control btn btn-primary mt-2" (click)="search()">Хайх</button>
+                    </div>
+
+                </div>
+
+                <div class="mt-5">
+                    <div *ngIf="newscount>0">
+                        <div class="row shafull-container1 mx-0">
+                            <div class="col-lg-3 col-md-4 col-sm-2 pl-0 pr-0 pl-md-2 pr-md-2 shaf-item"
+                                *ngFor="let item of newslist">
+                                <div class="folio-item-2 news-item">
+                                    <div class="news-item__img">
+                                        <a routerLink="/view/{{item.iDs}}">
+                                            <img src="{{getimg(item.picurl)}}" alt="" class="">
+                                        </a>
+                                    </div>
+
+                                    <div class="folio-content">
+                                        <div class="cats nowrap"><a routerLink="/view/{{item.iDs}}">{{item.subject}}</a>
+                                        </div>
+                                        <div class="biMeta">
+                                            <a routerLink="/view/{{item.iDs}}">
+                                                <i class="icon_clock_alt"></i> {{parseDates(item.ognoo)}}</a>
+                                        </div>
+                                        <!-- <a class="fm-more" routerLink="/view/{{item.iDs}}"><i class="nss-arrow-right"></i></a> -->
+                                    </div>
+                                    <!-- <div class="news-item__text">
+                                        <div class="biMeta">
+                                            <a routerLink="/view/{{item.iDs}}"><i class="icon_clock_alt"></i>
+                                                {{item.ognoo |
+                                                date:"yyyy-MM-dd"}}</a>
+                                        </div>
+                                        <div class="folio-content">
+                                            <p class="cats nowrap">
+                                                <a routerLink="/view/{{item.iDs}}">{{item.subject}}</a>
+                                            </p>
+                                            <a class="fm-more" routerLink="/view/{{item.iDs}}"><i
+                                                    class="nss-arrow-right"></i></a>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <nav aria-label="Page navigation example" class="mb-3" *ngIf="numbers.length>1">
+                            <ul class="pagination">
+                                <li class="page-item cursor-pointer text-color-primary">
+                                    <a class="page-link cursor-pointer" aria-label="Previous" (click)="page(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item text-color-primary" *ngFor="let num of numbers; let i = index"
+                                    [ngClass]="i===currentpage?'active':''">
+                                    <a class="page-link" (click)="page(i)"
+                                        *ngIf="currentpage+5>=(i+1) && currentpage-5<=(i+1)">{{i+1}}</a>
+                                </li>
+                                <li class="page-item text-color-primary">
+                                    <a class="page-link" aria-label="Next" (click)="page(pagelength-1)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div *ngIf="newscount<=0">
+                        Мэдээлэл олдсонгүй
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const box = document.getElementById('newsview');
+    box.removeAttribute('style');
+</script>

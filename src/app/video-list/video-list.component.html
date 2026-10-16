@@ -1,0 +1,171 @@
+<div class="p-10 infograp mt-2">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu![0]?.menuname}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <ul class="uk-list-divider sticky-top top-110">
+                    <div class="uk-width-1-1">
+                        <ul class="" uk-nav>
+                            <li class="list-group-item submenutitle">
+                                <img src="assets/images/icon.svg" alt="">
+                                <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                    {{parentmenu?parentmenu.menuname:'Видео'}}
+                                </div>
+                                <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                    {{parentmenu?parentmenu.menuname:'Video'}}
+                                </div>
+                            </li>
+                            <li class="uk-parent list-group-item uk-active uk-open"
+                                *ngFor="let sub of get_parent_main(parentmenu)">
+                                <a class="text-uppercase" *ngIf="sub.menulink===''"
+                                    routerLink="/{{sub.menutid}}/{{sub.iDs}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <a class="text-uppercase" *ngIf="sub.menulink!==''" [href]="sub.menulink"
+                                    (click)="link(sub.menulink)"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <ul class="uk-nav-sub" *ngIf="get_parent_count(sub.iDs)>0">
+                                    <li class="pt-2 uk-active uk-open" *ngFor="let sub1 of get_parent(sub.iDs)">
+                                        <a class="text-uppercase" *ngIf="sub1.menulink===''"
+                                            routerLink="/{{sub1.menutid}}/{{sub1.iDs}}"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <a class="text-uppercase" *ngIf="sub1.menulink!==''" [href]="sub1.menulink"
+                                            (click)="link(sub1.menulink)"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <ul *ngIf="get_parent_count(sub1.iDs)>0">
+                                            <li class="pt-2 uk-active uk-open"
+                                                *ngFor="let sub2 of get_parent(sub1.iDs)">
+                                                <a class="text-uppercase" *ngIf="sub2.menulink===''"
+                                                    routerLink="/{{sub2.menutid}}/{{sub2.iDs}}"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                                <a class="text-uppercase" *ngIf="sub2.menulink!==''"
+                                                    [href]="sub2.menulink" (click)="link(sub2.menulink)"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 
+                    <ng-container *ngFor="let sub of submenu">
+                        <li class="list-group-item" [ngClass]="menuId==sub.iDs?'active':''">
+                            <a class="text-uppercase" routerLink="/{{sub.menutid}}/{{sub.iDs}}">{{sub.menuname}}</a>
+                        </li>
+                    </ng-container> -->
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-9">
+                <div class="text-left pl-3 pl-sm-0 mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h6 text-uppercase" *ngIf="currentMenu">{{currentMenu?.menuname}}
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="tab-content">
+                        <!-- <div class="row shafull-container1">
+                            <div class="col-lg-4 col-md-6 shaf-item pl-0" *ngFor="let item of videolist">
+
+                                <div class="video-item ">
+                                    <div class="mt-1" *ngIf="item.picurl">
+                                        <a routerLink="/video-view/{{item.ids}}">
+                                            <img src="{{getimg(item.picurl)}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="embed-responsive embed-responsive-16by9 mt-1" *ngIf="!item.picurl">
+                                        <iframe class="embed-responsive-item" [src]="embedUrl(item.embed)"
+                                            height="270px" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="folio-item-2 ">
+                                        <div class="folio-content">
+                                            <div class="cats-1 nowrap">
+                                                <a routerLink="/video-view/{{item.ids}}">{{item.title}}</a>
+                                                <div class="biMeta">
+                                                    <a routerLink="/view/{{item.iDs}}">
+                                                        <i class="icon_clock_alt"></i>{{parseDates(item.ognoo)}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                        <div class="row shafull-container1">
+                            <div class="col-lg-4 col-md-6 pl-0 pr-0 pl-md-2 pr-md-2 shaf-item"
+                                *ngFor="let item of videolist">
+                                <div class="folio-item-2 news-item">
+                                    <div class="news-item__img">
+                                        <a routerLink="/video-view/{{item.ids}}">
+                                            <img src="{{getimg(item.picurl)}}" alt="" class="">
+                                        </a>
+                                    </div>
+                                    <div class="embed-responsive embed-responsive-16by9 mt-1" *ngIf="!item.picurl">
+                                        <iframe class="embed-responsive-item" [src]="embedUrl(item.embed)"
+                                            height="270px" allowfullscreen></iframe>
+                                    </div>
+
+                                    <div class="folio-content">
+                                        <div class="cats nowrap"><a
+                                                routerLink="/video-view/{{item.ids}}">{{item.title}}</a>
+                                        </div>
+                                        <div class="biMeta">
+                                            <a routerLink="/video-view/{{item.iDs}}">
+                                                <i class="icon_clock_alt"></i> {{parseDates(item.ognoo)}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="status" class="text-center" *ngIf="!videolist">
+                            <div class="spinner-grow text-color-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation example" class="mb-3" *ngIf="numbers.length>1">
+                            <ul class="pagination">
+                                <li class="page-item cursor-pointer text-color-primary">
+                                    <a class="page-link cursor-pointer" aria-label="Previous" (click)="page(1)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item text-color-primary" *ngFor="let num of numbers; let i = index"
+                                    [ngClass]="(i+1)===currentpage?'active':''">
+                                    <a class="page-link" (click)="page(i+1)">{{i+1}}</a>
+                                </li>
+                                <li class="page-item text-color-primary">
+                                    <a class="page-link" aria-label="Next" (click)="page(pagelength)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const box = document.getElementById('newsview');
+    box.removeAttribute('style');
+</script>

@@ -1,0 +1,131 @@
+<div class="p-10 infograp mt-2">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu![0]?.menuname}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <ul class="uk-list-divider sticky-top top-110">
+                    <div class="uk-width-1-1">
+                        <ul class="" uk-nav>
+                            <li class="list-group-item submenutitle">
+                                <img src="assets/images/icon.svg" alt="">
+                                <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                    {{parentmenu?parentmenu.menuname:'Мэдээ
+                                    Мэдээлэл'}}</div>
+                                <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                    {{parentmenu?parentmenu.menuname:'News'}}</div>
+                            </li>
+                            <li class="uk-parent list-group-item uk-active uk-open"
+                                *ngFor="let sub of get_parent_main(parentmenu)">
+                                <a class="text-uppercase" *ngIf="sub.menulink===''"
+                                    routerLink="/{{sub.menutid}}/{{sub.iDs}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <a class="text-uppercase" *ngIf="sub.menulink!==''" [href]="sub.menulink"
+                                    (click)="link(sub.menulink)"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <ul class="uk-nav-sub" *ngIf="get_parent_count(sub.iDs)>0">
+                                    <li class="pt-2 uk-active uk-open" *ngFor="let sub1 of get_parent(sub.iDs)">
+                                        <a class="text-uppercase" *ngIf="sub1.menulink===''"
+                                            routerLink="/{{sub1.menutid}}/{{sub1.iDs}}"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <a class="text-uppercase" *ngIf="sub1.menulink!==''" href="sub1.menulink"
+                                            (click)="link(sub1.menulink)"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <ul *ngIf="get_parent_count(sub1.iDs)>0">
+                                            <li class="pt-2 uk-active uk-open"
+                                                *ngFor="let sub2 of get_parent(sub1.iDs)">
+                                                <a class="text-uppercase" *ngIf="sub2.menulink===''"
+                                                    routerLink="/{{sub2.menutid}}/{{sub2.iDs}}"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                                <a class="text-uppercase" *ngIf="sub2.menulink!==''"
+                                                    href="sub2.menulink" (click)="link(sub2.menulink)"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 
+                    <ng-container *ngFor="let sub of submenu">
+                        <li class="list-group-item" [ngClass]="menuId==sub.iDs?'active':''">
+                            <a class="text-uppercase" routerLink="/{{sub.menutid}}/{{sub.iDs}}">{{sub.menuname}}</a>
+                        </li>
+                    </ng-container> -->
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-9">
+                <div class="text-left pl-3 pl-sm-0 mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h6 text-uppercase" *ngIf="currentMenu">{{currentMenu![0]?.menuname}}
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="row">
+                            <div class="col-12 px-0" *ngFor="let item of management">
+                                <div class="subtitle">{{item.title}}</div>
+                                <div class="management-team">
+                                    <div class="my-2 text-center" *ngFor="let employee of filterEmployee(item.iDs)">
+                                        <div class="management-team-item mx-2" (click)="showmodal(employee)">
+                                            <div class="management-team-item__img">
+                                                <img src="{{getimg(employee.picurl)}}" class="memberimg" alt="">
+                                            </div>
+                                            <div class="management-team-item__name">
+                                                {{employee.lastname}} <span
+                                                    class="text-uppercase">{{employee.firstname}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-center" class="uk-flex-top uk-modal uk-flex uk-open" *ngIf="memberinfo.show" uk-modal>
+    <div class="uk-modal-dialog uk-margin-auto-vertical" uk-overflow-auto>
+        <button class="uk-modal-close-default" type="button" uk-close (click)="memberinfo.show = false"></button>
+        <h4 class="uk-modal-title1 px-4 pt-4">
+            <div *ngIf="siteinfo.lang==='mn'">
+                {{memberinfo.lastname}} <span class="text-uppercase">{{memberinfo.firstname}}</span>
+            </div>
+            <div *ngIf="siteinfo.lang==='en'">
+                <span class="text-uppercase">{{memberinfo.firstname}} </span> {{memberinfo.lastname}}
+            </div>
+        </h4>
+        <div class="p-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <img src="{{getimg(memberinfo.picurl)}}" class="memberimg1 mb-3" alt="">
+                    </div>
+                    <div class="col-md-9 col-sm-12 infomore">
+                        <span [innerHTML]="getHTML(memberinfo.info)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

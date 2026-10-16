@@ -1,0 +1,12 @@
+<div id="modal-center" class="uk-flex-top uk-modal uk-flex uk-open" *ngIf="alert.show" uk-modal>
+    <div class="uk-modal-dialog uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h4 class="uk-modal-title1 px-4 pt-4">{{alert.title}}</h4>
+        <div class="px-4">
+            <span>{{alert.message}}</span>
+        </div>
+        <div class="text-center py-3">
+            <button class="btn btn-primary uk-modal-close" type="button">OK</button>
+        </div>
+    </div>
+</div>

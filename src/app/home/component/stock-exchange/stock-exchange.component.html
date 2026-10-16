@@ -1,0 +1,21 @@
+<div class="md:p-5 pb-5 mt-5" *ngIf="listcount>0">
+    <div class="container">
+        <div class="heading-title">
+            <h3>Монголын Хөрөнгийн Бирж</h3>
+            <span class="about-us__hr"></span>
+        </div>
+
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" *ngIf="listcount>0">
+            <div class="carousel-inner d-flex align-items-center">
+                <div class="carousel-item" *ngFor="let item of slidelist let i=index" [ngClass]="i===0? 'active': ''">
+                    <div [ngStyle]="{'background-image': getUrl(item.picurl)}" class="w-100 homeslide"></div>
+                    <div class="carousel-caption col-md-4 col-sm-8 col-8 absolute text-center">
+                        <h5 class="text-xl mb-2">{{item.titlename}}</h5>
+                        <p>{{item.titleinfo}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

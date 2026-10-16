@@ -1,0 +1,118 @@
+<div class="p-10 infograp mb-5">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu?currentMenu![0]?.menuname:''}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <ul class="uk-list-divider sticky-top top-110">
+                    <div class="uk-width-1-1">
+                        <ul class="" uk-nav>
+                            <li class="list-group-item submenutitle">
+                                <img src="assets/images/icon.svg" alt="">
+                                <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                    {{parentmenu?parentmenu.menuname:'Мэдээ
+                                    Мэдээлэл'}}</div>
+                                <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                    {{parentmenu?parentmenu.menuname:'News'}}</div>
+                            </li>
+                            <li class="uk-parent list-group-item uk-active uk-open"
+                                *ngFor="let sub of get_parent_main(parentmenu)">
+                                <a class="text-uppercase" *ngIf="sub.menulink===''"
+                                    routerLink="/{{sub.menutid}}/{{sub.iDs}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <a class="text-uppercase" *ngIf="sub.menulink!==''" [href]="sub.menulink"
+                                    (click)="link(sub.menulink)"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <ul class="uk-nav-sub" *ngIf="get_parent_count(sub.iDs)>0">
+                                    <li class="pt-2 uk-active uk-open" *ngFor="let sub1 of get_parent(sub.iDs)">
+                                        <a class="text-uppercase" *ngIf="sub1.menulink===''"
+                                            routerLink="/{{sub1.menutid}}/{{sub1.iDs}}"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <a class="text-uppercase" *ngIf="sub1.menulink!==''" [href]="sub1.menulink"
+                                            (click)="link(sub1.menulink)"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <ul *ngIf="get_parent_count(sub1.iDs)>0">
+                                            <li class="pt-2 uk-active uk-open"
+                                                *ngFor="let sub2 of get_parent(sub1.iDs)">
+                                                <a class="text-uppercase" *ngIf="sub2.menulink===''"
+                                                    routerLink="/{{sub2.menutid}}/{{sub2.iDs}}"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                                <a class="text-uppercase" *ngIf="sub2.menulink!==''"
+                                                    [href]="sub2.menulink" (click)="link(sub2.menulink)"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-9">
+                <div class="text-left mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h6 text-uppercase" *ngIf="currentMenu">
+                            {{currentMenu?.menuname}}
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="shafull-container1">
+                        <div class="shaf-item">
+                            <div class="my-2 more-info" *ngIf="news?.info" [innerHTML]="getHTML(news?.info)">
+
+                            </div>
+                            <div class="accordion md-accordion" id="accordionEx" role="tablist"
+                                aria-multiselectable="true">
+                                <div class="card" *ngFor="let item of list let i=index">
+                                    <div class="card-header cursor-pointer" role="tab" id="{{'head' + i}}">
+                                        <div (click)="item.show===i?item.show=-2:item.show=i">
+                                            <div class="mb-0 d-flex align-items-center">
+                                                <i class="nss-solid nss-plus-circle mr-1 text-color-primary"
+                                                    *ngIf="item.show!=i"></i>
+                                                <i class="nss-solid nss-minus-circle mr-1 text-color-primary"
+                                                    *ngIf="item.show===i"></i>
+                                                {{item.subject}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="item.show===i">
+                                        <div class="card-body uk-accordion-content1">
+                                            <div *ngIf="item.docdesc===''">
+                                                <iframe [src]="getUrl(item.fileurl)" frameborder="0"
+                                                    style="width: 100%; height: 1055px;"></iframe>
+                                            </div>
+                                            <div *ngIf="item.docdesc!==''" [innerHTML]="getHTML(item?.docdesc)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="status" class="text-center" *ngIf="!list">
+                                    <div class="spinner-grow text-color-primary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

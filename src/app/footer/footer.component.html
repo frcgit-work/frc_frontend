@@ -1,0 +1,65 @@
+<!-- Footer Start -->
+<footer class="footer">
+  <!-- Copryrgint Start -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-6 col-lg-5 col-xl-3 mt-3">
+        <ng-container *ngFor="let item of contactlist; let i=index">
+          <div class="d-flex py-1 text-white align-items-top">
+            <div class="px-2 footericon" id="footericon" style="min-width:44px;" [innerHTML]="getHTML(item.info)"></div>
+            <div class="text-sm" [innerHTML]="getHTML(item.title)"></div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-md-6 col-lg-1 col-xl-3 d-none d-lg-block d-xl-block">&nbsp;</div>
+      <div class="col-md-6 col-lg-1 col-xl-3 d-none d-lg-block d-xl-block">&nbsp;</div>
+      <div class="col-12 col-sm-6 col-md-6 col-lg-5 col-xl-3 py-4 ">
+        <div class="text-white text-left">
+          <div class="py-1" *ngFor="let item of menulist">
+            <a href="{{item.menulink}}">{{item.menuname}}</a>
+          </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="m-auto ab-social text-left">
+          <span *ngFor="let item of sociallist; let i = index" class="p-1">
+            <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'facebook'"><i
+                class="nss-facebook-f"></i></a>
+            <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'twitter'"><i
+                class="nss-twitter"></i></a>
+            <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'youtube'"><i
+                class="nss-youtube"></i></a>
+            <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'instagram'"><i
+                class="nss-instagram"></i></a>
+            <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'googleplus'"><i
+                class="nss-googleplus"></i></a>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="copyright">
+          <div class="py-3">
+            <p class="text-right">
+              © <a href="https://frc.mn/">
+                <span *ngIf="siteinfo.lang==='mn'">Санхүүгийн Зохицуулах Хороо</span>
+                <span *ngIf="siteinfo.lang==='en'">Financial regulatory commission</span>
+              </a> {{footerdate | date:"yyyy"}} |
+              All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed-head">
+    <ul>
+      <li *ngFor="let item of leftmenu">
+        <a href="#{{item.link}}">
+          <span class="text ml-1">{{item.titlename}}</span>
+          <img class="w-2 p-1" src="{{getimg(item.picurl)}}" /></a>
+      </li>
+    </ul>
+  </div>
+  <!-- Copryrgint End -->
+</footer>
+<!-- Footer End -->

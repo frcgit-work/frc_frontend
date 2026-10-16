@@ -1,0 +1,121 @@
+<div class="p-10 infograp">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu?currentMenu![0]?.menuname:''}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <ul class="uk-list-divider sticky-top top-110">
+                    <div class="uk-width-1-1">
+                        <ul class="" uk-nav>
+                            <li class="list-group-item submenutitle">
+                                <img src="assets/images/icon.svg" alt="">
+                                <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                    {{parentmenu?parentmenu.menuname:'Мэдээ
+                                    Мэдээлэл'}}</div>
+                                <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                    {{parentmenu?parentmenu.menuname:'News'}}</div>
+                            </li>
+                            <li class="uk-parent list-group-item uk-active uk-open"
+                                *ngFor="let sub of get_parent(parentmenu?parentmenu.iDs:0)">
+                                <a class="text-uppercase" *ngIf="sub.menulink===''"
+                                    routerLink="/{{sub.menutid}}/{{sub.iDs}}">{{sub.menuname}}</a>
+                                <a class="text-uppercase" *ngIf="sub.menulink!==''" [href]="sub.menulink"
+                                    (click)="link(sub.menulink)">{{sub.menuname}}</a>
+                                <ul class="uk-nav-sub" *ngIf="get_parent_count(sub.iDs)>0">
+                                    <li class="pt-2 uk-active uk-open" *ngFor="let sub1 of get_parent(sub.iDs)">
+                                        <a class="text-uppercase" *ngIf="sub1.menulink===''"
+                                            routerLink="/{{sub1.menutid}}/{{sub1.iDs}}">{{sub1.menuname}}</a>
+                                        <a class="text-uppercase" *ngIf="sub1.menulink!==''" href="sub1.menulink"
+                                            (click)="link(sub1.menulink)">{{sub1.menuname}}</a>
+                                        <ul *ngIf="get_parent_count(sub1.iDs)>0">
+                                            <li class="pt-2 uk-active uk-open"
+                                                *ngFor="let sub2 of get_parent(sub1.iDs)">
+                                                <a class="text-uppercase" *ngIf="sub2.menulink===''"
+                                                    routerLink="/{{sub2.menutid}}/{{sub2.iDs}}">{{sub2.menuname}}</a>
+                                                <a class="text-uppercase" *ngIf="sub2.menulink!==''"
+                                                    href="sub2.menulink"
+                                                    (click)="link(sub2.menulink)">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-9">
+                <div class="text-left mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h6 text-uppercase" *ngIf="currentMenu">
+                            {{currentMenu?currentMenu[0]?.menuname:''}}
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="shafull-container1">
+                        <div class="shaf-item">
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th scope="col" class="w-2 text-center">№</th>
+                                        <th scope="col">Нэр</th>
+                                        <th scope="col" class="w-4 text-center">Үзэх</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="w-2 text-center"></th>
+                                        <th scope="col">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    placeholder="Хайлт хийх...">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary btn-sm">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-search"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="w-4"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of list let i=index">
+                                        <th scope="row" class="text-center">{{i+1}}</th>
+                                        <td>{{item.subject}}</td>
+                                        <td class="text-center"><a href="{{getUrl(item.fileurl)}}" target="_blank"
+                                                class="text-color-primary">Үзэх</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div role="status" class="text-center" *ngIf="!list">
+                                <div class="spinner-grow text-color-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

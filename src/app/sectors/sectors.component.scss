@@ -1,0 +1,29 @@
+.list {
+    max-height: 250px;
+    overflow: auto;
+    margin-bottom: 40px;
+}
+
+/* width */
+.list::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  .list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .list::-webkit-scrollbar-thumb {
+    background: rgb(6 67 119 / 90%)
+  }
+  
+  /* Handle on hover */
+  .list::-webkit-scrollbar-thumb:hover {
+    background: rgb(6 67 119 / 100%);
+  }
+
+.table-header tr th{
+  vertical-align: middle;
+}

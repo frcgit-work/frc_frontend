@@ -1,0 +1,108 @@
+<div class="p-10 infograp mt-2">
+    <div class="container">
+        <!-- <div class="p-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item">
+                        <a routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">
+                            <span *ngIf="siteinfo.lang==='mn'">{{parentmenu?parentmenu.menuname:'Мэдээ
+                                Мэдээлэл'}}</span>
+                            <span *ngIf="siteinfo.lang==='en'">{{parentmenu?parentmenu.menuname:'News'}}</span>
+                        </a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu![0]?.menuname}}</li>
+                </ol>
+            </nav>
+        </div> -->
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <ul class="uk-list-divider sticky-top top-110">
+                    <div class="uk-width-1-1">
+                        <ul class="" uk-nav>
+                            <li class="list-group-item submenutitle">
+                                <img src="assets/images/icon.svg" alt="">
+                                <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                    {{parentmenu?parentmenu.menuname:'Мэдээ
+                                    Мэдээлэл'}}</div>
+                                <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                    {{parentmenu?parentmenu.menuname:'News'}}</div>
+                            </li>
+                            <li class="uk-parent list-group-item uk-active uk-open"
+                                *ngFor="let sub of get_parent_main(parentmenu)">
+                                <a class="text-uppercase" *ngIf="sub.menulink===''"
+                                    routerLink="/{{sub.menutid}}/{{sub.iDs}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <a class="text-uppercase" *ngIf="sub.menulink!==''" [href]="sub.menulink"
+                                    (click)="link(sub.menulink)"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <ul class="uk-nav-sub" *ngIf="get_parent_count(sub.iDs)>0">
+                                    <li class="pt-2 uk-active uk-open" *ngFor="let sub1 of get_parent(sub.iDs)">
+                                        <a class="text-uppercase" *ngIf="sub1.menulink===''"
+                                            routerLink="/{{sub1.menutid}}/{{sub1.iDs}}"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <a class="text-uppercase" *ngIf="sub1.menulink!==''" [href]="sub1.menulink"
+                                            (click)="link(sub1.menulink)"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <ul *ngIf="get_parent_count(sub1.iDs)>0">
+                                            <li class="pt-2 uk-active uk-open"
+                                                *ngFor="let sub2 of get_parent(sub1.iDs)">
+                                                <a class="text-uppercase" *ngIf="sub2.menulink===''"
+                                                    routerLink="/{{sub2.menutid}}/{{sub2.iDs}}"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                                <a class="text-uppercase" *ngIf="sub2.menulink!==''"
+                                                    [href]="sub2.menulink" (click)="link(sub2.menulink)"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 
+                    <ng-container *ngFor="let sub of submenu">
+                        <li class="list-group-item" [ngClass]="menuId==sub.iDs?'active':''">
+                            <a class="text-uppercase" routerLink="/{{sub.menutid}}/{{sub.iDs}}">{{sub.menuname}}</a>
+                        </li>
+                    </ng-container> -->
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-9 mt-3">
+                <div class="text-left mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h6 text-uppercase">{{news?.title}}</h3>
+                        <div class="text-right biMeta">
+                            <i class="icon_clock_alt"></i> {{parseDates(news?.ognoo)}}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="shafull-container1">
+                        <div class="shaf-item">
+                            <div class="folio-item-2">
+                                <div class="embed-responsive embed-responsive-16by9" *ngIf="news?.embed">
+                                    <iframe class="embed-responsive-item" [src]="embedUrl(news?.embed)"
+                                        allowfullscreen></iframe>
+                                </div>
+                                <!-- <div class="biMeta">
+                                    <a href="blog.html"><i class="icon_clock_alt"></i> {{news.ognoo |
+                                        date:"yyyy-MM-dd"}}</a>
+                                </div> -->
+                                <div class="more-info" [innerHTML]="getHTML(news?.info)">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

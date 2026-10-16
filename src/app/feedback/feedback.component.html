@@ -1,0 +1,110 @@
+<div class="p-10 infograp mb-5">
+    <div class="col-md-12 px-0">
+        <div class="container px-0">
+            <div class="row">
+                <div class="col-md-12 px-0">
+                    <h6 class="sec-title">Өргөдөл</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 px-0">
+                    <div class="contact-form1">
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Өргөдөл гаргагчийн нэр <span class="text-danger">*</span></label>
+                                <input type="text" name="name"
+                                    class="required border border-gray-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="name" [(ngModel)]="feedback!.name" placeholder="Өргөдөл гаргагчийн нэр *">
+                                <i class="nss-user1"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Өргөдлийн товч утга <span class="text-danger">*</span></label>
+                                <input type="text" name="feed_less"
+                                    class="required border border-gray-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="name" [(ngModel)]="feedback!.feed_less" placeholder="Өргөдлийн товч утга *">
+                                <i class="nss-pencil-alt1"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Өргөдлийн агуулга <span class="text-danger">*</span></label>
+                                <textarea name="feed_more" class="required" [(ngModel)]="feedback!.feed_more"
+                                    placeholder="Өргөдлийн агуулга *"></textarea>
+                                <i class="nss-pencil-alt1"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Оршин суугаа газрын хаяг <span class="text-danger">*</span></label>
+                                <input type="text" name="address"
+                                    class="required border border-gray-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="name" [(ngModel)]="feedback!.address" placeholder="Оршин суугаа газрын хаяг *">
+                                <i class="nss-map-pin1"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Утасны дугаар <span class="text-danger">*</span></label>
+                                <input type="text" name="phone"
+                                    class="required border border-gray-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="name" [(ngModel)]="feedback!.phone" placeholder="Утасны дугаар *">
+                                <i class="nss-phone1"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Мэйл хаяг <span class="text-danger">*</span></label>
+                                <input type="text" name="email"
+                                    class="required border border-gray-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="name" [(ngModel)]="feedback!.email" placeholder="Мэйл хаяг *">
+                                <i class="nss-envelope1"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-0">
+                            <div class="iconInput">
+                                <label for="">Салбар <span class="text-danger">*</span></label>
+                                <select
+                                    class="required border border-gray-200 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    aria-label="Салбар" [(ngModel)]="feedback.orgid">
+                                    <option value="0">Салбар сонгох</option>
+                                    <option value="1">ХЗХ</option>
+                                    <option value="2">ББСБ</option>
+                                    <option value="3">Даатгал</option>
+                                    <option value="4">ҮЦК</option>
+                                    <option value="5">Үл хөдлөх</option>
+                                    <option value="6">Үнэт металл</option>
+                                    <option value="7">Бусад</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-danger">*</span> заавал бөглөх тайлбар
+                        </div>
+                        <div class="col-md-12 pb-5 px-0">
+                            <button type="submit" class="grap-btn to_top" (click)="save()">Илгээх</button>
+                            <span *ngIf="alerttip" class="ml-2 p-2 bg-danger text-light">{{alerttip}}</span>
+                            <span *ngIf="alert.show" class="ml-2 p-2 bg-info text-light">{{alert.info}}</span>
+                            <img src="assets/images/ajax.gif" alt="" *ngIf="loading">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="modal-center" class="uk-flex-top uk-modal uk-flex uk-open" *ngIf="alert.show" uk-modal>
+    <div class="uk-modal-dialog uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h4 class="uk-modal-title1 px-4 pt-4">{{alert.title}}</h4>
+        <div class="px-4">
+            <span [innerHTML]="alert.info"></span>
+        </div>
+        <div class="text-center py-3">
+            <button class="btn btn-primary uk-modal-close" type="button">Ok</button>
+        </div>
+    </div>
+</div> -->

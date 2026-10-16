@@ -1,0 +1,36 @@
+// .icon-box {
+//  margin-right: 15px;
+//  width: 50%;
+// }
+.ib-icon {
+ //  width: 100%;
+ margin-bottom: 10px;
+}
+
+.infograp {
+ background-color: #f0f4f9;
+}
+
+.carousel-container {
+ width: 100vw;
+ height: 100vh;
+}
+
+//owl carousel
+.owl-next,
+.owl-prev {
+ display: inline-block;
+}
+
+.owl-next {
+ position: absolute;
+ right: -4%;
+ bottom: 50%;
+ width: 10px;
+}
+
+.owl-prev {
+ position: absolute;
+ bottom: 50%;
+ left: -4%;
+}

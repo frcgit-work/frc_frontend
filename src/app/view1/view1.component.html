@@ -1,0 +1,270 @@
+<div class="p-10 infograp mt-2">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu![0]?.menuname}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-3">
+                <ul class="uk-list-divider sticky-top top-110">
+                    <div class="uk-width-1-1">
+                        <ul class="" uk-nav>
+                            <li class="list-group-item submenutitle">
+                                <img src="assets/images/icon.svg" alt="">
+                                <div class="titlestring" *ngIf="siteinfo.lang==='mn'">
+                                    {{parentmenu?parentmenu.menuname:'Мэдээ
+                                    Мэдээлэл'}}</div>
+                                <div class="titlestring" *ngIf="siteinfo.lang==='en'">
+                                    {{parentmenu?parentmenu.menuname:'News'}}</div>
+                            </li>
+                            <li class="uk-parent list-group-item uk-active uk-open"
+                                *ngFor="let sub of get_parent_main(parentmenu)">
+                                <a class="text-uppercase" *ngIf="sub.menulink===''"
+                                    routerLink="/{{sub.menutid}}/{{sub.iDs}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <a class="text-uppercase" *ngIf="sub.menulink!==''" [href]="sub.menulink"
+                                    (click)="link(sub.menulink)"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <ul class="uk-nav-sub" *ngIf="get_parent_count(sub.iDs)>0">
+                                    <li class="pt-2 uk-active uk-open" *ngFor="let sub1 of get_parent(sub.iDs)">
+                                        <a class="text-uppercase" *ngIf="sub1.menulink===''"
+                                            routerLink="/{{sub1.menutid}}/{{sub1.iDs}}"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <a class="text-uppercase" *ngIf="sub1.menulink!==''" [href]="sub1.menulink"
+                                            (click)="link(sub1.menulink)"
+                                            [ngClass]="sub1.iDs===currentMenu.iDs?'text-color-primary':''">{{sub1.menuname}}</a>
+                                        <ul *ngIf="get_parent_count(sub1.iDs)>0">
+                                            <li class="pt-2 uk-active uk-open"
+                                                *ngFor="let sub2 of get_parent(sub1.iDs)">
+                                                <a class="text-uppercase" *ngIf="sub2.menulink===''"
+                                                    routerLink="/{{sub2.menutid}}/{{sub2.iDs}}"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                                <a class="text-uppercase" *ngIf="sub2.menulink!==''"
+                                                    [href]="sub2.menulink" (click)="link(sub2.menulink)"
+                                                    [ngClass]="sub2.iDs===currentMenu.iDs?'text-color-primary':''">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 
+                    <ng-container *ngFor="let sub of submenu">
+                        <li class="list-group-item" [ngClass]="menuId==sub.iDs?'active':''">
+                            <a class="text-uppercase" routerLink="/{{sub.menutid}}/{{sub.iDs}}">{{sub.menuname}}</a>
+                        </li>
+                    </ng-container> -->
+                </ul>
+            </div>
+            <div class="col-md-12 col-lg-9">
+                <div class="text-left pl-3 pl-sm-0 mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h5 text-uppercase text-color-primary font-bold" *ngIf="currentMenu">
+                            {{currentMenu?.menuname}}
+                        </h3>
+                    </div>
+                </div>
+                <div role="status" class="text-center" *ngIf="!newslist">
+                    <div class="spinner-grow text-color-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div>
+                    <div *ngIf="newscount>1">
+                        <div class="row shafull-container1">
+                            <div class="col-lg-4 col-md-6 pl-0 pr-0 pl-md-2 pr-md-2 shaf-item"
+                                *ngFor="let item of newslist">
+                                <div class="folio-item-2 news-item">
+                                    <div class="news-item__img">
+                                        <a routerLink="/view/{{item.iDs}}">
+                                            <img src="{{getimg(item.picurl)}}" alt="" class="">
+                                        </a>
+                                    </div>
+
+                                    <div class="folio-content">
+                                        <div class="cats nowrap"><a routerLink="/view/{{item.iDs}}">{{item.subject}}</a>
+                                        </div>
+                                        <div class="biMeta">
+                                            <a routerLink="/view/{{item.iDs}}">
+                                                <i class="icon_clock_alt"></i> {{parseDates(item.ognoo)}}</a>
+                                        </div>
+                                        <!-- <a class="fm-more" routerLink="/view/{{item.iDs}}"><i class="nss-arrow-right"></i></a> -->
+                                    </div>
+                                    <!-- <div class="news-item__text">
+                                        <div class="biMeta">
+                                            <a routerLink="/view/{{item.iDs}}"><i class="icon_clock_alt"></i>
+                                                {{item.ognoo |
+                                                date:"yyyy-MM-dd"}}</a>
+                                        </div>
+                                        <div class="folio-content">
+                                            <p class="cats nowrap">
+                                                <a routerLink="/view/{{item.iDs}}">{{item.subject}}</a>
+                                            </p>
+                                            <a class="fm-more" routerLink="/view/{{item.iDs}}"><i
+                                                    class="nss-arrow-right"></i></a>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <nav aria-label="Page navigation example" class="mb-3" *ngIf="numbers.length>1">
+                            <ul class="pagination">
+                                <li class="page-item cursor-pointer text-color-primary">
+                                    <a class="page-link cursor-pointer" aria-label="Previous" (click)="page(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item text-color-primary" *ngFor="let num of numbers; let i = index"
+                                    [ngClass]="i===currentpage?'active':''">
+                                    <a class="page-link" (click)="page(i)"
+                                        *ngIf="currentpage+5>=(i+1) && currentpage-5<=(i+1)">{{i+1}}</a>
+                                </li>
+                                <li class="page-item text-color-primary">
+                                    <a class="page-link" aria-label="Next" (click)="page(pagelength-1)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div *ngIf="newscount && newscount<=1">
+                        <div class="shafull-container1 newsview" id="newsview">
+                            <div class="col-12 shaf-item px-0">
+                                <div class="folio-item-2">
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
+                                        *ngIf="piclist && piclist?.length>0">
+                                        <div class="carousel-inner d-flex align-items-center">
+                                            <div class="carousel-item" *ngFor="let item of piclist let i=index"
+                                                [ngClass]="i===0? 'active': ''">
+                                                <div [ngStyle]="{'background-image': getUrl(item.picurl)}"
+                                                    class="w-100 homeslide" style="height: 600px;"></div>
+                                                <div
+                                                    class="carousel-caption col-md-4 col-sm-8 col-8 absolute text-center">
+                                                    <h4 class="text-xl mb-2">{{item.title}}</h4>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-target="#carouselExampleControls" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-target="#carouselExampleControls" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="!piclist && piclist?.length===0">
+                                        <img *ngIf="!newslist[0]?.info"
+                                            src="{{getimgview(newslist?newslist[0]?.picurl:'')}}" alt="">
+                                    </div>
+                                    <div class="more-info" [innerHTML]="getHTML(newslist?newslist[0]?.info:'')">
+                                    </div>
+
+                                    <div class="seofy_module_time_line_vertical appear_anim"
+                                        *ngIf="pagelist && pagelist[0] && pagelist[0].styleid==='timeline'">
+                                        <ng-container *ngFor="let item of pagelist; let i=index">
+                                            <div class="time_line-item item_show">
+                                                <div class="time_line-date_wrap">
+                                                    <div class="seofy_hexagon">
+                                                        <svg [attr.fill]="timelinecolor(i)"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 177.4 197.4">
+                                                            <path
+                                                                d="M0,58.4v79.9c0,6.5,3.5,12.6,9.2,15.8l70.5,40.2c5.6,3.2,12.4,3.2,18,0l70.5-40.2c5.7-3.2,9.2-9.3,9.2-15.8V58.4 c0-6.5-3.5-12.6-9.2-15.8L97.7,2.4c-5.6-3.2-12.4-3.2-18,0L9.2,42.5C3.5,45.8,0,51.8,0,58.4z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                    <h4 class="time_line-date uk-margin-remove"
+                                                        [ngStyle]="{color:timelinecolor(i)}">{{item.title}}</h4>
+                                                </div>
+                                                <div class="time_line-content1"
+                                                    [style.background-color]="timelinecolor(i)">
+                                                    <div class="time_line-content bg-white">
+                                                        <div class="time_line-descr">
+                                                            <span [innerHTML]="getHTML(item.info)"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <div class="row g-4"
+                                        *ngIf="pagelist && pagelist[0] && pagelist[0].styleid==='objective'">
+                                        <ng-container *ngFor="let item of pagelist; let i=index">
+                                            <div class="mb-3" [ngClass]="i===0?'col-12':'col-sm-6 col-12'">
+                                                <div class="card h-100">
+                                                    <div class=""
+                                                        style="width: 100%; right: 0; top: 0; z-index: 3; user-select: none; padding-left: 5px; padding-top: 5px;">
+                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M0 0H15L0 15V0Z" fill="#00A3EA" fill-opacity="0.3">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class=" pl-3 pr-3">
+                                                        <div class="heading-title">
+                                                            {{item.title}}
+                                                        </div>
+                                                        <p><span [innerHTML]="getHTML(item.info)"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <div id="modal-center" class="uk-flex-top uk-modal uk-flex uk-open"
+                                        *ngIf="pagelist && pagelist[0] && pagelist[0].styleid==='modal'" uk-modal>
+                                        <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                            <button class="uk-modal-close-default" type="button" uk-close></button>
+                                            <h4 class="uk-modal-title1 px-4 pt-4 text-center text-red-800">
+                                                {{pagelist[0].title}}</h4>
+                                            <div class="px-4">
+                                                <span [innerHTML]="getHTML(pagelist[0].info)"></span>
+                                            </div>
+                                            <div class="text-center py-3">
+                                                <button class="btn btn-primary uk-modal-close"
+                                                    type="button">Ойлголоо</button>
+                                            </div>
+                                            <!-- <img src="http://66.181.165.129/resources/Images/Slide/202203/225310806-photo-2022-02-01-10-32-13.jpg"
+                                                class="img-fluid bannerimage"> -->
+                                        </div>
+                                    </div>
+                                    <div class="row g-4"
+                                        *ngIf="pagelist && pagelist[0] && pagelist[0].styleid==='feedback'">
+                                        <app-feedback class="w-100 mt-5"></app-feedback>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    const box = document.getElementById('newsview');
+    box.removeAttribute('style');
+</script> -->
+
+<!-- <script> $('img').removeAttr("style"); </script> -->

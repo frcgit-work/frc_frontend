@@ -1,0 +1,14 @@
+input {color: #000!important}
+input:after{color:red;content:" *";}
+
+.contact-form1 {
+    font-size: 15px!important;
+}
+
+.iconInput input[type="text"], .iconInput input[type="email"], .iconInput input[type="url"], .iconInput input[type="number"], .iconInput select, .iconInput textarea {
+    font-size: 15px!important;
+}
+
+.text-danger {
+    color:red!important;
+}

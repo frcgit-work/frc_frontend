@@ -1,0 +1,355 @@
+
+// .row {
+//  margin-left: 0px !important;
+//  margin-right: 0px !important;
+// }
+
+/* You can add global styles to this file, and also import other style files */
+// @tailwind base;
+@tailwind components;
+// @tailwind utilities;
+
+
+body {
+    line-height: inherit;
+}
+
+ol, ul, menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+}
+
+.heading-title {
+    position: relative;
+    // text-transform: uppercase;
+    color: #000000;
+    line-height: 1;
+    // text-align: center;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.heading-title h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-family: 'Mogul Helios';
+}
+
+.heading-sub-title {
+    position: relative;
+    text-transform: uppercase;
+    color: #000000;
+    line-height: 1;
+    text-align: center;
+    font-weight: 600;
+}
+
+.heading-sub-title h4 {
+    margin: 10px auto;
+    font-size: 15px;
+}
+
+.heading-title h3::after {
+    content: '';
+    bottom: -5px;
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient( 270deg, rgba(104, 110, 226, 0.16) 0%, rgba(6,67,119,.9) 100% );
+}
+
+.heading-title h6::after {
+    content: '';
+    bottom: -5px;
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient( 270deg, rgba(104, 110, 226, 0.16) 0%, rgba(6,67,119,.9) 100% );
+    margin-top: 10px;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    outline: none;
+}
+
+.list-group-item.active {
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+    color: inherit;
+}
+
+.more-info {
+    line-height: 2.5;
+    text-align: justify;
+    font-size: 15px;
+   }
+
+.more-info a {
+    color: #2957A4!important;
+    font-weight: bold!important;
+}
+
+.more-info ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.newsview a {
+    color: #2957A4;
+    font-weight: bold;
+}
+
+.w-4 {
+    width: 4rem;
+}
+
+.w-2 {
+    width: 2rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.table-header tr th {
+    padding: 15px 15px;
+    font-weight: bold;
+    color: #2957A4;
+    border: 1px solid #E8E7E7;
+    font-size: 15px;
+    // font-family: 'Roboto Condensed';
+    text-transform: uppercase;
+    background: #f8f8f8;
+    text-align: left;
+}
+
+.table-header tr th {
+    font-size: 15px;
+}
+
+.btn .btn-primary {
+    background-color: #2957A4!important;
+}
+
+.bg-color-primary {
+    background-color: #2957A4!important;
+}
+.text-color-primary {
+    color: #2957A4;
+    font-weight: bold;
+}
+.text-size-primary {
+    font-size: 15px;
+}
+
+.page-item.active .page-link{
+    background-color: #2957A4;
+    border-color: #2957A4;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: #2957A4;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2957A485; 
+  }
+
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    -webkit-overflow-scrolling: auto
+}
+
+::-webkit-scrollbar:vertical {
+    width: 0.5em;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2957A4;
+    border-radius: 10px;
+    // border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.news-item img {
+    transition: 1s ease;
+}
+    
+.news-item img:hover{
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 1s ease;
+}
+.more-info {
+    color: #000000!important;
+    line-height: 2!important;
+    // font-size: 12px!important;
+}
+
+.more-info img {
+    // width: auto!important;
+    height: auto!important;
+}
+
+@media (max-width: 900px){
+    .more-info img {
+        padding: 0 30px!important;
+    }
+
+    
+.uk-sticky-fixed {
+    position: relative!important;
+}
+}
+
+@media (max-width: 700px){
+    .more-info img {
+        padding: 0 20px!important;
+    }
+}
+
+@media (max-width: 500px){
+    .more-info img {
+        padding: 0 10px!important;
+    }
+}
+
+.more-info img {
+    padding: 0 50px;
+}
+
+
+.widget-title {
+    font-weight: bold;
+}
+
+.top-110{
+    top: 110px!important;
+    z-index: 111!important;
+}
+
+.highcharts-credits{
+    display: none;
+  }
+
+table tr td {
+    word-break: keep-all!important;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    font-weight: bold!important;
+    color: #2957A4;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+  }
+
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6
+{
+    font-family: inherit!important;
+}
+
+.highcharts-title {
+    font-family: 'Mogul Helios';
+    font-size: 24px!important;
+}
+
+text {
+    font-family: 'Mogul Helios';
+}
+
+#homelistinfo img {
+    display: none;
+}
+
+#homelistinfo p>span {
+    background-color: transparent!important;
+    color: #fff!important;
+    color: #fff!important;
+    font-family: inherit!important;
+    font-size: inherit!important;
+    font-weight: inherit!important;
+}
+#homelistinfo span span{
+    background-color: transparent!important;
+    color: #fff!important;
+    font-family: inherit!important;
+    font-size: inherit!important;
+    font-weight: inherit!important;
+}
+
+#homelistinfo p>span span{
+    background-color: transparent!important;
+    color: #fff!important;
+    font-family: inherit!important;
+    font-size: inherit!important;
+    font-weight: inherit!important;
+}
+
+.img-min-width {
+    max-width: 150px;
+}
+
+.img-mid-width {
+    max-width: 600px;
+}
+
+.img-max-width {
+    max-width: 1200px;
+}
+
+table {
+    min-width: 600px;
+}
+.page-link {
+    white-space: nowrap;
+}
+.pagination {
+    overflow: auto;
+}
+
+.uk-button-default{
+    color: #fff!important;
+}
+
+.uk-button {
+    padding: 0 15px!important;
+}
+
+@media (min-width: 1536px) {
+.container {
+    max-width: 1536px;
+}
+}
+
+.nav-tabs .nav-item {
+    z-index: 10!important;
+}

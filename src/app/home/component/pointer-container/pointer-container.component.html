@@ -1,0 +1,93 @@
+<div class="container" *ngIf="listcount>0">
+    <!-- <div class="hidden md:block col-2"></div> -->
+    <div class="site-section mb-2 w-95">
+        <!-- <owl-carousel-o [options]="customOptions" style="display: flex;" (window:resize)="onResize($event)">
+            <ng-template carouselSlide *ngFor="let item of slidelist" class="card-group" style="display: flex;">
+                <a href="{{item.link}}" style="height: 100%;display: flex;">
+                    <div class="uk-grid-margin uk-first-column card">
+                        <img src="{{item.picurl}}" class="card-img-top" alt="{{item.titlename}}">
+                        <div class="card-body">
+                            <p class="card-title">{{item.titlename}}</p>
+                        </div>
+
+                    </div>
+                </a>
+            </ng-template>
+        </owl-carousel-o> -->
+
+
+        <div uk-slider>
+            <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+                <ul
+                    class="uk-slider-items uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l uk-child-width-expand@xl zindex">
+                    <li *ngFor="let item of slidelist">
+                        <a href="{{item.link}}" style="height: 100%;display: flex;">
+                            <div class="uk-card uk-card-default shadow-none border border-1 w-100 pt-2">
+                                <div class="uk-card-media-top text-center">
+                                    <img src="{{item.picurl}}" class="mx-auto pointerimage">
+                                </div>
+                                <div class="uk-card-body">
+                                    <p class="card-title">{{item.titlename}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+                <a class="uk-position-center-left uk-position-small text-black-50 zindex1 d-none d-lg-block" href="#"
+                    uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small text-black-50 zindex1 d-none d-lg-block" href="#"
+                    uk-slidenav-next uk-slider-item="next"></a>
+
+            </div>
+
+        </div>
+        <div role="status" class="text-center" *ngIf="!slidelist">
+            <div class="spinner-grow text-color-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+
+        <!-- <div class="container owl-2-style">
+            <div class="owl-carousel owl-2 bg-white">
+
+
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/logo1.4_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Зөвшөөрлийн цахим систем</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/logo1.4_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Зөвшөөрлийн цахим систем</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/logo1.7_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Цахим тайлан</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/logo1.1_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Зах зээлийн мэдээллийн сан</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/logo1.4_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Компанийн засаглал, комплайнс</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/Slide3_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Таны санхүүгийн боловсролд</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/logo1.5_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Эрх зүйн актууд</a></h6>
+                </div>
+                <div class="media-29101 p-3 mt-1">
+                    <a href="#"><img src="/assets/images/home1/Slide6_s.png" alt="Image" class="img-fluid"></a>
+                    <h6 class="text-center"><a href="#">Өргөдөл гомдол</a></h6>
+                </div>
+            </div>
+
+        </div> -->
+    </div>
+    <!-- <div class="hidden md:block col-2"></div> -->
+</div>

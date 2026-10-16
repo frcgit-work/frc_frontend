@@ -1,0 +1,43 @@
+.footer-title {
+    font-size: 15px;
+    line-height: 0.8;
+    text-transform: uppercase;
+    position: relative;
+    // margin: 13px 0 37px;
+    border: none;
+    color: #fff;
+    padding-left: 18px;
+}
+
+footer .widget .footer-title:after {
+    position: absolute;
+    left: 0;
+    top: -4px;
+    content: '';
+    width: 4px;
+    height: 23px;
+    background: rgba(6,67,119,.9);
+}
+
+.footer-menu {
+    color: #fff;
+}
+
+.footer-menu::before, .footer-submenu::before{
+    content: "\e9ef";
+    // font-family: 'nss-theme';
+}
+
+.footer-submenu {
+    padding-left: 10px;
+}
+
+.footericon svg {
+    width: 20px!important;
+    height: 20px!important;
+}
+
+.footericon img {
+    width: 20px!important;
+    height: 20px!important;
+}

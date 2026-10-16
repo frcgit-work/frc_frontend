@@ -1,0 +1,67 @@
+<!-- <div>test</div> -->
+
+<div class="p-10 infograp">
+    <div class="container">
+        <div class="p-3">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Эхлэл</a></li>
+                    <li class="breadcrumb-item"><a
+                            routerLink="/{{parentmenu?.menutid}}/{{parentmenu?.iDs}}">{{parentmenu?parentmenu.menuname:'Мэдээ
+                            Мэдээлэл'}}</a>
+                    </li>
+                    <li class=" breadcrumb-item active" *ngIf="!currentMenu" aria-current="page">
+                        Мэдээ, мэдээлэл</li>
+                    <li class="breadcrumb-item active"
+                        *ngIf="currentMenu && currentMenu[0] && currentMenu[0].menuname !== 'Мэдээ, мэдээлэл'"
+                        aria-current="page">
+                        {{currentMenu![0]?.menuname}}</li>
+                </ol>
+            </nav> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="py-3" *ngIf="news && news[0]">
+                    <div class="more-info" [innerHTML]="getHTML(news?news[0]?.info:'')"></div>
+                </div>
+
+                <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid
+                    *ngIf="parent">
+                    <div *ngFor="let item of parent">
+                        <div class="heading-title">
+                            <h6 class="text-uppercase uk-text-bold" [style.background-color]="item.bgcolor">
+                                <a *ngIf="item.menulink===''" [style.color]="item.textcolor"
+                                    routerLink="{{item.menutid}}/{{item.iDs}}">{{item.menuname}}</a>
+                                <a *ngIf="item.menulink!==''" [style.color]="item.textcolor" href="{{item.menulink}}"
+                                    target="{{item.target}}">{{item.menuname}}</a>
+                            </h6>
+                        </div>
+                        <ul class="uk-list uk-list-disc uk-list-primary list" *ngIf="get_parent_count(item.iDs)>0">
+                            <li *ngFor="let sub of get_parent(item.iDs)" [style.background-color]="sub.bgcolor">
+                                <a *ngIf="sub.menulink===''" [style.color]="sub.textcolor"
+                                    routerLink="{{sub.menutid}}/{{sub.iDs}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                                <a *ngIf="sub.menulink!==''" [style.color]="sub.textcolor" href="{{sub.menulink}}"
+                                    target="{{sub.target}}"
+                                    [ngClass]="sub.iDs===currentMenu.iDs?'text-color-primary':''">{{sub.menuname}}</a>
+                            </li>
+                        </ul>
+                        <ul class="uk-list uk-list-disc uk-list-primary list" *ngIf="get_parent_count(item.iDs)===0">
+                            <li>
+                                <a *ngIf="item.menulink===''" [style.color]="item.textcolor"
+                                    routerLink="{{item.menutid}}/{{item.iDs}}"
+                                    [ngClass]="item.iDs===currentMenu.iDs?'text-color-primary':''">{{item.menuname}}</a>
+                                <a *ngIf="item.menulink!==''" [style.color]="item.textcolor" [href]="item.menulink"
+                                    target="{{item.target}}"
+                                    [ngClass]="item.iDs===currentMenu.iDs?'text-color-primary':''">{{item.menuname}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

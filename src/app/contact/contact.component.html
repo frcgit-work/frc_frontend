@@ -1,0 +1,59 @@
+<div class="p-10 infograp mt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-left pl-3 pl-sm-0 mt-3 mt-lg-0 mb-3">
+                    <div class="widget">
+                        <h3 class="widget-title h6 text-uppercase" *ngIf="currentMenu">{{currentMenu![0]?.menuname}}
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div *ngIf="newscount && newscount<=1">
+                        <div class="shafull-container1 newsview" id="newsview">
+                            <div class="col-12 shaf-item px-0">
+                                <div class="text-left mt-3 mt-lg-0 mb-3">
+                                    <div class="heading-title">
+                                        <h3>{{newslist?newslist[0]?.subject:''}}</h3>
+                                        <span class="about-us__hr"></span>
+                                    </div>
+                                </div>
+                                <div class="folio-item-2 row">
+                                    <div class="col-sm-12 col-md-6 pl-0">
+                                        <div *ngIf="pagelist && pagelist[0] && pagelist[0].styleid==='contact'">
+                                            <ng-container *ngFor="let item of pagelist; let i=index">
+                                                <div class="d-flex py-2 align-items-center">
+                                                    <div class="px-2 " styel="min-width:27px;"
+                                                        [innerHTML]="getHTML(item.info)"></div>
+                                                    <div [innerHTML]="getHTML(item.title)"></div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-12 col-md-6">
+                                        <img src="{{getimgview(newslist?newslist[0]?.picurl:'')}}"
+                                            style="max-height: 300px;" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="more-info mt-5" [innerHTML]="getHTML(newslist?newslist[0]?.info:'')">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div role="status" class="text-center" *ngIf="!newslist">
+                    <div class="spinner-grow text-color-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div class="my-5">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6831.089258973369!2d106.90542614431308!3d47.91813655680524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xefbfa7abec62c636!2sFinancial%20Regulatory%20Commision!5e1!3m2!1sen!2smn!4v1585730542808!5m2!1sen!2smn"
+                        width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""
+                        aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

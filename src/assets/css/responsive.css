@@ -1,0 +1,993 @@
+/*
+ Theme Name: Graptor
+ Theme URI: https://psdtowpwork.com/html/graptor/
+ Author: nsstheme
+ Author URI: https://themeforest.net/user/nsstheme
+ Description: Graptor - Technology & IT Solutions HTML5 Responsive Template
+ Version: 1.0
+ License:
+ License URI:
+ */
+ 
+/*=======================================================================
+[Table of contents]
+=========================================================================
+1. Responsive For Extra large Device 2
+2. Desktop Device
+3. Responsive For Tab Device
+4. Responsive For Mobile & Tab
+5. Responsive For Mobile Device
+*/
+
+
+/*------------------------------------------------------------------------------------
+/ 1. Responsive For Extra large Device 2
+--------------------------------------------------------------------------------------*/
+@media (min-width: 1200px) and (max-width: 1600px){
+    .header-02 .navbar-expand-lg .navbar-nav li:nth-last-child(1) .sub-menu,
+    .header-02 .navbar-expand-lg .navbar-nav li:nth-last-child(2) .sub-menu{
+        left: auto;
+        right: 0;
+    }
+    .team-section-1{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+}
+
+/*------------------------------------------------------------------------------------
+/ 2. Desktop Device
+/--------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1350px){
+
+    .navbar-expand-lg .navbar-nav li:nth-last-child(1) .sub-menu{
+        left: auto;
+        right: 0;
+    }
+    .navbar-expand-lg .navbar-nav li:nth-last-child(1) .sub-menu li .sub-menu,
+    .navbar-expand-lg .navbar-nav li:nth-last-child(2) .sub-menu li .sub-menu,
+    .navbar-expand-lg .navbar-nav li:nth-last-child(3) .sub-menu li .sub-menu,
+    .navbar-expand-lg .navbar-nav li:nth-last-child(4) .sub-menu li .sub-menu{
+        left: auto;
+        right: 110%;
+    }
+    .navbar-expand-lg .navbar-nav li:nth-last-child(1) .sub-menu li:hover .sub-menu,
+    .navbar-expand-lg .navbar-nav li:nth-last-child(2) .sub-menu li:hover .sub-menu,
+    .navbar-expand-lg .navbar-nav li:nth-last-child(3) .sub-menu li:hover .sub-menu,
+    .navbar-expand-lg .navbar-nav li:nth-last-child(4) .sub-menu li:hover .sub-menu{
+        left: auto;
+        right: 100%;
+    }
+    .navbar-expand-lg .navbar-nav li{
+        margin-left: 18px;
+    }
+    .topbar .container-fluid, header .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .access-btn .grap-btn{
+        display: none;
+    }
+    .access-btn .btn-search{
+        top: 0;
+        margin-right: 10px;
+    }
+    .banner-content h2{
+        font-size: 60px;
+        line-height: 70px;
+    }
+    .ab-img img{
+        max-width: 100%;
+    }
+    .ab-content .sec-title,
+    .sec-title{
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .faq-area{
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .faq-area .contact-form{
+        padding: 0;
+    }
+    .slider-section .owl-carousel .owl-nav{
+        max-width: 960px;
+    }
+    .mailchimp-area h3 br{
+        display: none;
+    }
+    .icon-box-3{
+        padding-right: 0;
+    }
+    .contact-form{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .yearsXP,
+    .ts-item{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .team-section-1{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .bgcolor{
+        right: 0;
+    }
+    .icon-box-1 h5{
+        width: 100%;
+    }
+    .layer img{
+        max-width: 100%;
+    }
+    .abc2{
+        padding-left: 0;
+    }
+    .topinfo-02 .icon-box-4 {
+        margin-left: 15px;
+        padding-right: 15px;
+    }
+    .topinfo-02 .icon-box-4:last-child{
+        margin-right: 0;
+        padding-right: 0;
+    }
+    .topinfo-02 .icon-box-4 h5{
+        font-size: 15px;
+    }
+    .layer-right{
+        right: -10%;
+        left: auto;
+    }
+    .hero-slider-02 .slider-content h2{
+        font-size: 60px;
+        line-height: 70px;
+    }
+    .slider-section .hero-slider-02.owl-carousel .owl-nav button{
+        right: 0;
+    }
+    .slider-section .hero-slider-02.owl-carousel .owl-nav .owl-prev{
+        right: auto;
+        left: 0px;
+    }
+    .slider-section .hero-slider-02.owl-carousel:hover .owl-nav button{
+        right: 10px;
+    }
+    .slider-section .hero-slider-02.owl-carousel:hover .owl-nav .owl-prev{
+        left: 10px;
+    }
+    .anim_class .slider-content.text-left {
+        padding-left: 80px;
+    }
+    .service-item-03{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .pricintable-02{
+        padding-left: 25px;
+        padding-right: 20px;
+    }
+    .contact_con{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .biMeta2 a:last-child{
+        display: none;
+    }
+    .biMeta2 a{
+        margin-right: 22px;
+    }
+    .serviceSidebar{
+        padding-left: 0;
+    }
+    .serviceSidebar ul li a{
+        font-size: 15px;
+    }
+    .clinet_review{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .service-ads{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .sidebar{
+        padding-left: 0;
+    }
+    .t01_details{
+        width: calc(100% - 50px);
+    }
+    .team_content{
+        margin-left: -50px;
+    }
+    .icon-box-6{
+        padding-right: 20px;
+        padding-left: 30px;
+    }
+    .icon-box-6 i{
+        left: 30px;
+    }
+    .comment-list .children{
+        margin-left: 50px;
+    }
+}
+/*------------------------------------------------------------------------------------
+/ 3. Responsive For Tab Device
+/--------------------------------------------------------------------------------------*/
+@media (min-width: 768px) and (max-width: 991px){
+    .video_image .popup{
+        bottom: -120px;
+    }
+    .slider-section .owl-carousel .owl-nav{
+        width: 720px;
+    }
+    .slider-content h2{
+        font-size: 50px;
+        line-height: 60px;
+    }
+    .access-btn {
+        margin-right: 85px;
+    }
+    .topinfo p{
+        margin-right: 20px;
+    }
+    .banner-content h2 {
+        font-size: 40px;
+        line-height: 54px;
+        margin: 0 0 30px;
+    }
+    .layer img{
+        max-width: 100%;
+    }
+    .ab-img img{
+        max-width: 100%;
+    }
+    .ab2{
+        position: relative;
+        left: 0;
+    }
+    .ab1{
+        position: relative;
+        right: 0;
+    }
+    .ab-content .sec-title,
+    .sec-title{
+        font-size: 36px;
+        line-height: 44px;
+    }
+    .service-section-2 .col-lg-2 {
+        -ms-flex: 0 0 33%;
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+    .faq-area{
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .faq-area .contact-form{
+        padding: 0;
+    }
+    .mc4wp-form button{
+        padding: 0 18px;
+    }
+    .mailchimp-area h3 br{
+        display: none;
+    }
+    .mailchimp-area h3{
+        font-size: 24px;
+        margin-right: 15px;
+    }
+    .team-slider.owl-carousel{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .shaf-filter li{
+        margin-right: 20px;
+    }
+    .box-wrapper{
+        display: block;
+    }
+    .box-wrapper .icon-box-1:nth-child(2){
+        border-right: none;
+    }
+    .box-wrapper .icon-box-1{
+        width: 49%;
+        margin-bottom: 75px;
+        padding-top: 15px;
+        display: inline-block;
+    }
+    .header-01 .access-btn{
+        top: 5px;
+    }
+    .topbar-02 .navbar-brand img{
+        height: auto;
+    }
+    .topinfo-02 .icon-box-4:nth-child(3){
+        display: none;
+    }
+    .topinfo-02 .icon-box-4:nth-child(2){
+        padding-right: 0;
+        border: none;
+    }
+    .layer-right{
+        right: -15%;
+        left: auto;
+    }
+    .layer-left{
+        left: -5%;
+        right: auto;
+    }
+    .slider-section .hero-slider-02.owl-carousel:hover .owl-nav button{
+        right: 20px;
+    }
+    .slider-section .hero-slider-02.owl-carousel:hover .owl-nav .owl-prev{
+        right: auto;
+        left: 20px;
+    }
+    .owl-carousel.anim_class .single-slide.bg-img{
+        overflow: hidden;
+    }
+    .pricintable-02{
+        padding-left: 35px;
+        padding-right: 30px;
+    }
+}
+/*------------------------------------------------------------------------------------
+/ 4. Responsive For Mobile & Tab
+/--------------------------------------------------------------------------------------*/
+@media (max-width: 991px){
+    
+    /*--- Mobile Menu ---*/
+    .navbar.navbar-expand-lg .navbar-toggler {
+        width: 45px;
+        height: 45px;
+        padding: 1px;
+        outline: none;
+        border-radius: 3px;
+        color: #686EE2;
+        background: #fff;
+        border: none;
+        font-size: 20px;
+        line-height: 45px;
+        position: absolute;
+        right: 0;
+    }
+    .header-02 .navbar.navbar-expand-lg .navbar-toggler{
+        background: #191919;
+        color: #fff;
+    }
+    .navbar.navbar-expand-lg .navbar-toggler.active .nss-bars1:before {
+        content: "\fa88";
+    }
+    .navbar.navbar-expand-lg .navbar-collapse {
+        border-top: 1px solid rgba(30, 42, 120, .07);
+        position: absolute;
+        left: -15px;
+        top: 100%;
+        width: calc(100% + 30px);
+        max-height: calc(100vh - 180px);
+        overflow-y: scroll;
+        background: #2957A4;
+        border-radius: 0;
+        z-index: 99;
+        box-shadow: 0px 5px 20px 0px rgba(150, 176, 203, 0.15);
+        -webkit-box-shadow: 0px 5px 20px 0px rgba(150, 176, 203, 0.15);
+        -moz-box-shadow: 0px 5px 20px 0px rgba(150, 176, 203, 0.15);
+    }
+    .navbar.navbar-expand-lg{
+        padding: 5px;
+    }
+    .header-03 .navbar-expand-lg .navbar-nav li > a,
+    .navbar-expand-lg .navbar-nav li a{
+        padding: 5px 20px 2px;
+        width: 100%;
+        color: #191919;
+        font-weight: 400;
+        line-height: 10px;
+        text-align: left!important;
+    }
+    .navbar-expand-lg .navbar-nav li{
+        margin: 0;
+        display: block;
+        border-top: 1px solid #F6F6F6;
+    }
+    .navbar-expand-lg .navbar-nav li.menu-item-has-children > a::after{
+        display: none;
+    }
+    .submenu-toggler{
+        cursor: pointer;
+        display: block;
+        color: #191919;
+        width: 35px;
+        height: 35px;
+        background: #F6F6F6;
+        font-size: 11px;
+        position: absolute;
+        right: 15px;
+        text-align: center;
+        margin: 0;
+        top: 6px;
+        line-height: 38px;
+        font-weight: 300;
+        border-radius: 3px;
+        transition: none;
+    }
+    .navbar-expand-lg .navbar-nav li .sub-menu .submenu-toggler{
+        background: #fff;
+    }
+    .header-03 .navbar-expand-lg .navbar-nav li .sub-menu,
+    .header-02 .navbar-expand-lg .navbar-nav li .sub-menu,
+    .navbar-expand-lg .navbar-nav li .sub-menu{
+        position: relative;
+        visibility: visible;
+        opacity: 1;
+        width: 100%;
+        background: #2957A4;
+        left: 0;
+        top: 0;
+        pointer-events: inherit;
+        padding: 0;
+        /* display: none; */
+        transform: none;
+        transition: none;
+        box-shadow: none;
+        transition: none;
+    }
+    .navbar-expand-lg .navbar-nav li:hover .sub-menu{
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition: none;
+        box-shadow: none;
+        transition: none;
+        pointer-events: inherit;
+    }
+    .navbar-expand-lg .navbar-nav li.menu-item-has-children > a::before{
+        display: none;
+    }
+    .header-03 .navbar-expand-lg .navbar-nav li .sub-menu li,
+    .header-02 .navbar-expand-lg .navbar-nav li .sub-menu li,
+    .navbar-expand-lg .navbar-nav li .sub-menu li{
+        border-color: rgba(30, 42, 120, .07);
+        transition: none;
+        transform: none !important;
+        visibility: visible;
+        opacity: 1;
+    }
+    .navbar-expand-lg .navbar-nav li .sub-menu li a{
+        padding-left: 35px;
+        color: #191919;
+    }
+    .navbar-expand-lg .navbar-nav li .sub-menu li .sub-menu {
+        position: relative;
+        left: 0;
+        right: auto;
+        pointer-events: inherit;
+        top: 0;
+        visibility: visible;
+        opacity: 1;
+        transition: none;
+        /* display: none; */
+    }
+    .navbar-expand-lg .navbar-nav li .sub-menu li:hover .sub-menu {
+        visibility: visible;
+        opacity: 1;
+        left: 0;
+        pointer-events: inherit;
+    }
+    .navbar-expand-lg .navbar-nav li .sub-menu li .sub-menu li a{
+        padding-left: 50px;
+    }
+    .topbar .container-fluid, header .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .header-03 .navbar.navbar-expand-lg{
+        padding: 0;
+        justify-content: flex-end;
+    }
+    .header-03 .navbar-expand-lg .navbar-nav li .sub-menu li.current-menu-item > a, 
+    .header-03 .navbar-expand-lg .navbar-nav li .sub-menu li:hover > a,
+    .header-03 .navbar-expand-lg .navbar-nav li:hover > a {
+        color: #686EE2;
+    }
+    .header-03 .access-btn{
+        margin-right: 0;
+    }
+    .header-03 .navbar.navbar-expand-lg .navbar-toggler{
+        right: auto;
+        left: 0;
+    }
+    .abc2{
+        padding-left: 0;
+    }
+    .portfolio-section-2{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .topinfo p:nth-child(3){
+        display: none;
+    }
+    .bisiness-str{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .contact-form{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .team-section-1{
+        padding: 0;
+    }
+    .icon-box-3{
+        padding-right: 0;
+    }
+    .team-slider.owl-carousel .owl-stage-outer {
+        height: calc(100% + 30px);
+        margin: -15px;
+        padding: 15px;
+        width: calc(100% + 30px);
+        overflow: hidden;
+    }
+    .bisiness-str img{
+        margin-top: 30px;
+    }
+    .icon-box-5{
+        margin-bottom: 30px;
+    }
+    .wd_logo{
+        margin-bottom: 28px;
+    }
+    .about_widget_area > p{
+        margin-bottom: 30px;
+    }
+    .social_item{
+        margin-top: 45px;
+    }
+    .contact_con{
+        padding-left: 25px;
+        padding-right: 20px;
+        margin-bottom: 40px;
+    }
+    .contact_con .icon-box-3{
+        padding-left: 0;
+    }
+    .contact_con .icon-box-3 .ib-icon{
+        position: relative;
+        margin: 0 0 30px;
+    }
+    .biMeta2 a{
+        margin-right: 22px;
+    }
+    .clinet_review{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .serviceSidebar{
+        padding-left: 0;
+        margin-top: 60px;
+    }
+    .detils-folio p{
+        padding-right: 0;
+        margin-bottom: 10px;
+    }
+    .sidebar{
+        padding-left: 0;
+        margin-top: 60px;
+    }
+    .sidebar .widget:last-child{
+        margin-bottom: 0;
+    }
+    .team_content{
+        margin: 50px 0 0;
+    }
+    .tm-area{
+        padding-right: 0;
+    }
+    .icon-box-6{
+        padding-right: 15px;
+        padding-left: 20px;
+    }
+    .woocommerce-product-search, .search-form{
+        margin: 0;
+    }
+    .comment-list .children{
+        margin-left: 90px;
+    }
+}
+/*------------------------------------------------------------------------------------
+/ 5. Responsive For Mobile Device
+--------------------------------------------------------------------------------------*/
+@media (max-width: 767px){
+    .team-slider.owl-carousel{
+        padding: 0 5px;
+        overflow: hidden;
+    }
+    .cus-col .col-lg-4 {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .cmtitle{
+        font-size: 36px;
+        line-height: 50px;
+    }
+    .comment-list .children{
+        margin-left: 15px;
+    }
+    .single-comment{
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+    .single-comment .cm-img {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin-bottom: 20px;
+    }
+    .post-author{
+        padding-left: 30px;
+    }
+    .post-author img{
+        position: relative;
+        left: 0;
+        margin-bottom: 20px;
+    }
+    .post-pagination a.next{
+        margin-top: 20px;
+    }
+    .sb_details blockquote.wp-block-quote, .sb_details blockquote{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .sb_details blockquote::after{
+        left: 5px;
+    }
+    .sb_details blockquote p{
+        font-size: 22px;
+    }
+    .team_content ul li{
+        float: none;
+        width: 100%;
+    }
+    .t01_details{
+        width: calc(100% - 50px);
+    }
+    .blog-item-3.noThumb{
+        padding-left: 25px;
+        padding-right: 20px;
+    }
+    .bi-details h3{
+        font-size: 28px;
+    }
+    .bi-cats{
+        float: none;
+    }
+    .bi-author{
+        display: block;
+        margin: 10px 0 0;
+    }
+    .grapt-pagination a, .grapt-pagination span{
+        margin-bottom: 10px;
+    }
+    .quatation br{
+        display: none;
+    }
+    .service-area h3{
+        font-size: 34px;
+        line-height: 45px;
+    }
+    .pb_title{
+        font-size: 32px;
+        line-height: 42px;
+    }
+    .page_crumb{
+        font-size: 17px;
+    }
+    .center_align{
+        top: auto;
+        transform: none;
+    }
+    .iconInput input[type="checkbox"] ~ label{
+        margin: 0 0 20px;
+    }
+    .biMeta2 a:last-child{
+        display: none;
+    }
+    .pricintable-02{
+        padding-left: 25px;
+        padding-right: 20px;
+    }
+    .testimonial-slider-two .ts-item {
+        margin-top: 0px;
+        padding-top: 75px;
+        padding-bottom: 50px;
+        overflow: visible;
+    }
+    .ts-author{
+        top: -35px;
+        padding: 10px 0 0 99px;
+        width: 100%;
+        position: relative;
+        box-shadow: none;
+    }
+    .testimonial-slider-two .ts-author img{
+        left: 0;
+        top: 0;
+    }
+    .ab-quote{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .ab-img{
+        margin-bottom: 40px;
+    }
+    .about-section-2 .ab-content .sec-title{
+        margin-right: 0;
+    }
+    .service-item-03{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .owl-carousel.anim_class .owl-item.active .single-slide.bg-img,
+    .owl-carousel.anim_class .single-slide.bg-img{
+        transform: none;
+    }
+    .anim_class .slider-content.text-left{
+        padding-left: 0;
+    }
+    .slider-section .hero-slider-02.owl-carousel .owl-nav{
+        display: none;
+    }
+    .footer .widget .mc4wp-form button{
+        position: absolute;
+        right: 6px;
+    }
+    .fs-info:last-child{
+        margin-bottom: 0;
+    }
+    .header-03 .navigator{
+        display: block;
+        margin-right: -15px;
+    }
+    .topbar-02{
+        text-align: center;
+    }
+    .topinfo-02{
+        display: none;
+    }
+    .layer-right, .layer-left{
+        display: none;
+    }
+    .testimonial-slider.owl-carousel .owl-nav {
+        position: relative;
+        top: 0;
+        text-align: center;
+        margin: 30px 0 0;
+    }
+    .ts-item{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .shaf-filter li{
+        margin: 0 5px 15px;
+    }
+    .service-item-01{
+        padding-left: 30px;
+    }
+    .service-item-01 .ib-icon {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin: 0 0 30px;
+    }
+    .yearsXP{
+        padding: 5px 30px;
+    }
+    .bgcolor{
+        display: none;
+    }
+    .video_image{
+        margin: 0 0 30px;
+    }
+    .video_image .popup{
+        position: relative;
+        bottom: 114px;
+    }
+    .mc4wp-form{
+        width: 100%
+    }
+    .copyright{
+        text-align: center;
+    }
+    .copyright ul{
+        text-align: center;
+        margin: 10px 0 0;
+    }
+    .footer .sf_s1_post img{
+        position: relative;
+        margin-bottom: 15px;
+    }
+    .footer .sf_s1_post{
+        margin: 0 0 40px;
+        padding-left: 0;
+    }
+    .footer .widget{
+        margin-bottom: 10px;
+    }
+    .mc4wp-form button:hover {
+        background: rgba(255, 255, 255, .1);
+    }
+    .mailchimp-area h3{
+        margin-bottom: 40px;
+    }
+    .mailchimp-area h3 br{
+        display: none;
+    }
+    .mc4wp-form button{
+        position: relative;
+        right: 0;
+    }
+    .mailchimp-area{
+        display: block;
+    }
+    .fact-wrapper, .box-wrapper {
+        display: block;
+        background-image: none !important;
+    }
+    .folio-item-2 .folio-content,
+    .folio-content{
+        padding-right: 20px;
+        padding-left: 25px;
+    }
+    .folio-content h5{
+        margin-bottom: 15px;
+    }
+    .fm-more{
+        position: relative;
+        right: 0;
+    }
+    .folio-slider.owl-carousel .owl-nav button{
+        visibility: visible;
+        opacity: 1;
+        top: 95%;
+    }
+    .singlefaq .card-body{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .faq-area .contact-form{
+        padding: 0 0 40px;
+    }
+    .faq-area{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .banner-01{
+        padding: 100px 0;
+    }
+    .banner-content .popup:after{
+        display: none;
+    }
+    .banner-content .popup{
+        margin: 0 0 0 15px;
+    }
+    .banner-content .grap-btn i{
+        margin-left: 20px;
+    }
+    .banner-01 .card{
+        display: none;
+    }
+    .banner-content h2 {
+        font-size: 36px;
+        line-height: 45px;
+        margin-bottom: 25px;
+    }
+    .banner-content .sub-title{
+        margin-bottom: 18px;
+    }
+    .access-btn .btn-search{
+        top: 0;
+    }
+    .sec-title,
+    .ab-content .sec-title{
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .access-btn .grap-btn{
+        display: none;
+    }
+    .topbar .container-fluid, header .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .service-section-2 .col-lg-2{
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .ab-img img{
+        max-width: 100%;
+    }
+    .slider-content .to_bottom{
+        margin: 0;
+        z-index: 9;
+    }
+    .slider-section .owl-carousel .owl-nav{
+        width: 60px;
+        margin: 100px auto 0 0;
+        left: auto;
+        right: 15px;
+    }
+    .iconbox-section-1{
+        margin-top: 110px;
+    }
+    .single-slide.bg-img{
+        height: 100vh;
+    }
+    .slider-content h2 br{
+        display: none;
+    }
+    .slider-content h2{
+        font-size: 32px;
+        line-height: 45px;
+        margin-bottom: 25px;
+    }
+    .slider-content .sub-title{
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+    .slider-content .sub-title:after{
+        width: 45px;
+        right: -15px;
+    }
+    .navigator{
+        display: none;
+    }
+    .access-btn {
+        margin-left: 0;
+        margin-right: 65px;
+    }
+    .topinfo{
+        text-align: center;
+    }
+    .topinfo p{
+        display: block;
+        margin: 0 0 10px;
+    }
+    .topsocial{
+        float: none;
+        text-align: center;
+        display: block;
+    }
+    .box-wrapper{
+        display: block;
+    }
+    .box-wrapper .icon-box-1{
+        width: 100%;
+        border: none;
+        margin-bottom: 50px;
+    }
+    .icon-box-1 .ib-icon{
+        margin-bottom: 30px;
+    }
+    .fact-01{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .ab2{
+        position: relative;
+        left: 0;
+    }
+    .ab1{
+        display: none;
+    }
+    .abc2 .listing-item{
+        margin-right: 0;
+    }
+}

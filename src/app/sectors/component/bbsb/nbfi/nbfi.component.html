@@ -1,0 +1,107 @@
+<div>
+    <div class="shafull-container1">
+        <div class="shaf-item">
+            <table class="table table-striped table-bordered uk-table-striped minwidth">
+                <thead class="table-header">
+                    <tr>
+                        <th scope="col" class="text-center col1 text-nowrap">№</th>
+                        <th scope="col" class="col2 text-nowrap">
+                            <span *ngIf="siteinfo.lang==='mn'">Нэр</span>
+                            <span *ngIf="siteinfo.lang==='en'">Name</span>
+                        </th>
+                        <th scope="col" class="text-center col3">
+                            <span *ngIf="siteinfo.lang==='mn'">Тусгай зөвшөөрөл олгосон огноо</span>
+                            <span *ngIf="siteinfo.lang==='en'">Date</span>
+                        </th>
+                        <th scope="col" class="text-nowrap">
+                            <span *ngIf="siteinfo.lang==='mn'">Хаяг</span>
+                            <span *ngIf="siteinfo.lang==='en'">Address</span>
+                        </th>
+                        <th scope="col" class="text-center col5 text-nowrap">
+                            <span *ngIf="siteinfo.lang==='mn'">Дэлгэрэнгүй</span>
+                            <span *ngIf="siteinfo.lang==='en'">More</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center"></th>
+                        <th scope="col">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm" placeholder="Хайлт хийх..."
+                                    (change)="search($event)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="input-group">
+                                <input type="date" class="form-control form-control-sm" placeholder="Хайлт хийх..."
+                                    (change)="searchdate($event)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of filterlist let i=index">
+                        <td scope="col" class="text-center col1 text-nowrap">{{(currentpage-1)*20+i+1}}</td>
+                        <td>
+                            <div class="text-uppercase" [innerHTML]="getHTML(item.entity_name)"></div>
+                        </td>
+                        <td class="text-center">{{item.license_date | date: 'yyyy-MM-dd'}}</td>
+                        <td>
+                            <div [innerHTML]="getHTML(item.address)"></div>
+                        </td>
+                        <td class="text-center">
+                            <a routerLink="/sct/org-detail/{{item.registration_number}}"
+                                class="text-color-primary text-size-primary text-uppercase text-nowrap">
+                                <span *ngIf="siteinfo.lang==='mn'">Дэлгэрэнгүй</span>
+                                <span *ngIf="siteinfo.lang==='en'">More</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div role="status" class="text-center" *ngIf="!filterlist">
+                <div class="spinner-grow text-color-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <nav aria-label="Page navigation example" class="mb-3" *ngIf="numbers.length>1">
+                <ul class="pagination">
+                    <li class="page-item cursor-pointer text-color-primary">
+                        <a class="page-link cursor-pointer" aria-label="Previous" (click)="page(1)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item text-color-primary" *ngFor="let num of numbers; let i = index"
+                        [ngClass]="(i+1)===currentpage?'active':''">
+                        <a class="page-link"
+                            (click)="page(i+1)">{{i+1}}</a>
+                    </li>
+                    <li class="page-item text-color-primary">
+                        <a class="page-link" aria-label="Next" (click)="page(pagelength)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

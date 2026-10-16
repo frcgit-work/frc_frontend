@@ -1,0 +1,35 @@
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.reportimg {
+    min-height: 250px;
+    // max-height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.reportimg img {
+    margin: auto;
+
+}
+.uk-card-default {
+    box-shadow: none;
+    border: 1px solid rgb(0 0 0 / 3%);
+    margin: 0 10px;
+}
+
+.heading-title {
+    margin-bottom: 10px;
+}
+
+.min-width {
+    min-width: 820px!important;
+}
+
+.overflow {
+    overflow-x: auto;
+}

@@ -1,0 +1,99 @@
+.topbar {
+    padding: 1px !important;
+}
+
+
+.header-exchange {
+    background: #fff;
+    height: 40px;
+}
+.header-raw-material__icon {
+    color: #2957A4;
+}
+
+.header-exchange__name {
+    font-size: 15px;
+    margin-left: 10px;
+    color: #2957A4;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    // font-family: 'Roboto Condensed';
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    line-height: 25px;
+    min-width: 50px;
+}
+
+// .header-exchange__name:after {
+//     content: ">";
+//     // font-family: 'nss-theme';
+//     font-size: 18px;
+//     position: absolute;
+//     right: 10px;
+//     top: 6px;
+// }
+.header-exchange__value-name {
+    font-weight: 500;
+     color: black;
+}
+
+// .flags1 {
+//     height: 15px;
+//     width: 25px;
+//     background-repeat: no-repeat;
+//     background-image: url(../assets/images/flags.png);
+// }
+
+
+.flags:first-child>a {
+    padding-left: 15px;
+}
+
+.flags>a {
+    padding: 0;
+    padding-right: 5px;
+    min-height: 32px;
+}
+
+.flags {
+    height: 15px;
+    width: 25px;
+    
+}
+
+.flagsen {
+    height: 15px;
+    width: 25px;
+    background-repeat: no-repeat;
+    background-position: -25px 0;
+    background-image: url(/assets/images/flags.png);
+    // margin-right: 10px;
+    margin-left: 10px;
+}
+
+.flagsmn {
+    height: 15px;
+    width: 25px;
+    background-repeat: no-repeat;
+    background-image: url(/assets/images/flags.png);
+    // margin-right: 10px;
+    margin-left: 10px;
+}
+
+.search-menu {
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    right: auto;
+    min-width: 20rem;
+    color: #fff;
+}
+.header-02 .access-btn .btn-search {
+    color: #fff;
+}
+
+.text-keepall {
+    word-break: keep-all!important;
+}

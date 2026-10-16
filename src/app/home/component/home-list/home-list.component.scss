@@ -1,0 +1,29 @@
+.folio-item-2 img{
+    min-height: 200px;
+}
+.boxing .tristar {
+    padding-right: 15px;
+}
+
+.boxing .tristar .uk-grid {
+    padding-bottom: 40px;
+}
+.boxing .tristar .itemboxs {
+    border: 1px solid #e0e0e0;
+}
+
+.folio-item-2 .folio-content {
+    border: none;
+    padding-left: 0px;
+}
+
+@media (min-width: 960px) {
+.uk-child-width-1-3\@m>* {
+    width: calc(100% * 1 / 3.001);
+}
+}
+@media (min-width: 640px) {
+.uk-child-width-1-2\@s>* {
+    width: 50%;
+}
+}

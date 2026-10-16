@@ -1,0 +1,708 @@
+<!-- <section class="topbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 hidden md:block">
+                <div class="topinfo">
+                    <p class="text-left"><i class="icon_mail_alt"></i><a href="mailto:info@website.com">info@frc.mn</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-6">
+                <ul class="topsocial">
+                    <li *ngFor="let item of sociallist let i=index">
+                        <a href="{{item.socialurl}}" target="_blank" *ngIf="item.social==='facebook'"><i
+                                class="nss-facebook-f"></i></a>
+                        <a href="{{item.socialurl}}" target="_blank" *ngIf="item.social==='twitter'"><i
+                                class="nss-twitter"></i></a>
+                        <a href="{{item.socialurl}}" target="_blank" *ngIf="item.social==='youtube'"><i
+                                class="nss-youtube"></i></a>
+                        <a href="{{item.socialurl}}" target="_blank" *ngIf="item.social==='instagram'"><i
+                                class="nss-instagram"></i></a>
+                        <a href="{{item.socialurl}}" target="_blank" *ngIf="item.social==='googleplus'"><i
+                                class="nss-googleplus"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<!-- Header Start -->
+<div class="container mx-auto my-2">
+    <div class="row">
+        <div class="col-6 col-xs-8 col-sm-6 col-md-6 col-lg-4 ">
+            <a class="navbar-brand" href="/">
+                <img src="assets/images/logo2.png" *ngIf="siteinfo.lang==='mn'" alt="">
+                <img src="assets/images/frc_en.jpg" *ngIf="siteinfo.lang==='en'" alt="">
+            </a>
+        </div>
+        <div class="col-6 col-xs-4 col-sm-6 col-md-6 col-lg-8 text-right my-auto d-flex justify-content-end">
+            <div class="col-12 justify-content-end">
+                <div class="col-12 text-right my-auto d-flex justify-content-end">
+                    <span *ngFor="let item of sociallist; let i = index" class="p-2 d-none d-sm-block">
+                        <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'facebook'">
+                            <!-- <svg width="9" height="17" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.49316 0.0937495V2.15625H6.2666C5.81869 2.15625 5.5166 2.25 5.36035 2.4375C5.2041 2.625 5.12598 2.90625 5.12598 3.28125V4.75781H7.41504L7.11035 7.07031H5.12598V13H2.73535V7.07031H0.743164V4.75781H2.73535V3.05469C2.73535 2.08594 3.00619 1.33594 3.54785 0.804687C4.08952 0.268228 4.81087 -9.53674e-07 5.71191 -9.53674e-07C6.47754 -9.53674e-07 7.07129 0.0312492 7.49316 0.0937495Z"
+                            fill="#3B5998"></path>
+                    </svg> -->
+                            <svg width="24" height="20" enable-background="new 0 0 128 128" id="Social_Icons"
+                                version="1.1" viewBox="0 0 128 128" xml:space="preserve"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="_x31__stroke">
+                                    <g id="Facebook_1_">
+                                        <rect fill="none" height="128" width="128" />
+                                        <path clip-rule="evenodd"
+                                            d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z"
+                                            fill="#4460A0" fill-rule="evenodd" id="Facebook" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                        <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'twitter'">
+                            <svg width="24" height="17" viewBox="0 0 14 10" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1553 1.1875C12.8063 1.69792 12.3844 2.13281 11.8896 2.49219C11.8949 2.5651 11.8975 2.67448 11.8975 2.82031C11.8975 3.4974 11.7985 4.17448 11.6006 4.85156C11.4027 5.52344 11.1006 6.16927 10.6943 6.78906C10.2933 7.40885 9.81413 7.95833 9.25684 8.4375C8.69954 8.91146 8.02767 9.29167 7.24121 9.57812C6.45475 9.85937 5.61361 10 4.71777 10C3.30632 10 2.01465 9.6224 0.842773 8.86719C1.02507 8.88802 1.22819 8.89844 1.45215 8.89844C2.62402 8.89844 3.66829 8.53906 4.58496 7.82031C4.03809 7.8099 3.5485 7.64323 3.11621 7.32031C2.68392 6.99219 2.38704 6.57552 2.22559 6.07031C2.39746 6.09635 2.55632 6.10937 2.70215 6.10937C2.92611 6.10937 3.14746 6.08073 3.36621 6.02344C2.78288 5.90365 2.2985 5.61458 1.91309 5.15625C1.53288 4.69271 1.34277 4.15625 1.34277 3.54687V3.51562C1.69694 3.71354 2.07715 3.82031 2.4834 3.83594C2.13965 3.60677 1.86621 3.30729 1.66309 2.9375C1.45996 2.56771 1.3584 2.16667 1.3584 1.73437C1.3584 1.27604 1.47298 0.851562 1.70215 0.460937C2.33236 1.23698 3.09798 1.85937 3.99902 2.32812C4.90527 2.79167 5.87402 3.04948 6.90527 3.10156C6.86361 2.90365 6.84277 2.71094 6.84277 2.52344C6.84277 1.82552 7.08757 1.23177 7.57715 0.742187C8.07194 0.247396 8.66829 -2.38419e-07 9.36621 -2.38419e-07C10.0954 -2.38419e-07 10.71 0.265625 11.21 0.796875C11.7777 0.6875 12.3115 0.484375 12.8115 0.1875C12.6188 0.786458 12.249 1.25 11.7021 1.57812C12.1865 1.52604 12.6709 1.39583 13.1553 1.1875Z"
+                                    fill="#55ACEE"></path>
+                            </svg>
+                        </a>
+                        <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'youtube'">
+                            <svg width="24" height="17" viewBox="0 0 14 10" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.55469 6.8125L9.33594 4.85937L5.55469 2.88281V6.8125ZM7 0.0781249C7.875 0.0781249 8.71875 0.0911456 9.53125 0.117187C10.349 0.13802 10.9479 0.161458 11.3281 0.1875L11.8984 0.21875C11.9036 0.21875 11.9479 0.223958 12.0313 0.234374C12.1146 0.239583 12.1745 0.247396 12.2109 0.257812C12.2474 0.26302 12.3073 0.273437 12.3906 0.289062C12.4792 0.304687 12.5547 0.32552 12.6172 0.351562C12.6797 0.377604 12.7526 0.411458 12.8359 0.453124C12.9193 0.494791 13 0.546875 13.0781 0.609375C13.1563 0.666666 13.2318 0.734375 13.3047 0.8125C13.3359 0.84375 13.375 0.893229 13.4219 0.960937C13.474 1.02344 13.5495 1.17448 13.6484 1.41406C13.7526 1.65365 13.8229 1.91667 13.8594 2.20312C13.901 2.53646 13.9323 2.89323 13.9531 3.27344C13.9792 3.64844 13.9948 3.94271 14 4.15625V4.46875V5.53125C14.0052 6.28646 13.9583 7.04167 13.8594 7.79687C13.8229 8.08333 13.7578 8.34375 13.6641 8.57812C13.5703 8.80729 13.487 8.96615 13.4141 9.05469L13.3047 9.1875C13.2318 9.26562 13.1563 9.33594 13.0781 9.39844C13 9.45573 12.9193 9.50521 12.8359 9.54687C12.7526 9.58333 12.6797 9.61458 12.6172 9.64062C12.5547 9.66667 12.4792 9.6875 12.3906 9.70312C12.3073 9.71875 12.2448 9.73177 12.2031 9.74219C12.1667 9.7474 12.1068 9.75521 12.0234 9.76562C11.9453 9.77083 11.9036 9.77344 11.8984 9.77344C10.5911 9.8724 8.95833 9.92187 7 9.92187C5.92188 9.91146 4.98438 9.89583 4.1875 9.875C3.39583 9.84896 2.875 9.82812 2.625 9.8125L2.24219 9.78125L1.96094 9.75C1.77344 9.72396 1.63021 9.69792 1.53125 9.67187C1.4375 9.64583 1.30469 9.59115 1.13281 9.50781C0.966146 9.42448 0.820313 9.31771 0.695313 9.1875C0.664063 9.15625 0.622396 9.10937 0.570313 9.04687C0.523438 8.97917 0.447917 8.82552 0.34375 8.58594C0.244792 8.34635 0.177083 8.08333 0.140625 7.79687C0.0989583 7.46354 0.0651042 7.10937 0.0390625 6.73437C0.0182292 6.35417 0.00520833 6.05729 0 5.84375V5.53125V4.46875C-0.00520833 3.71354 0.0416667 2.95833 0.140625 2.20312C0.177083 1.91667 0.242188 1.65885 0.335938 1.42969C0.429688 1.19531 0.513021 1.03385 0.585938 0.945312L0.695313 0.8125C0.768229 0.734375 0.84375 0.666666 0.921875 0.609375C1 0.546875 1.08073 0.494791 1.16406 0.453124C1.2474 0.411458 1.32031 0.377604 1.38281 0.351562C1.44531 0.32552 1.51823 0.304687 1.60156 0.289062C1.6901 0.273437 1.7526 0.26302 1.78906 0.257812C1.82552 0.247396 1.88542 0.239583 1.96875 0.234374C2.05208 0.223958 2.09635 0.21875 2.10156 0.21875C3.40885 0.125 5.04167 0.0781249 7 0.0781249Z"
+                                    fill="#FF0000"></path>
+                            </svg>
+                        </a>
+                        <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'instagram'">
+                            <svg width="24" height="17" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1"
+                                style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"
+                                xml:space="preserve">
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: url(#SVGID_1_);
+                                    }
+
+                                    .st1 {
+                                        fill: #FFFFFF;
+                                    }
+                                </style>
+                                <linearGradient gradientUnits="userSpaceOnUse" id="SVGID_1_" x1="146.4465" x2="853.5535"
+                                    y1="853.5535" y2="146.4465">
+                                    <stop offset="0" style="stop-color:#FFD521" />
+                                    <stop offset="5.510481e-02" style="stop-color:#FFD020" />
+                                    <stop offset="0.1241" style="stop-color:#FEC01E" />
+                                    <stop offset="0.2004" style="stop-color:#FCA71B" />
+                                    <stop offset="0.2821" style="stop-color:#FA8316" />
+                                    <stop offset="0.3681" style="stop-color:#F85510" />
+                                    <stop offset="0.4563" style="stop-color:#F51E09" />
+                                    <stop offset="0.5" style="stop-color:#F30005" />
+                                    <stop offset="0.5035" style="stop-color:#F20007" />
+                                    <stop offset="0.5966" style="stop-color:#E1003B" />
+                                    <stop offset="0.6879" style="stop-color:#D30067" />
+                                    <stop offset="0.7757" style="stop-color:#C70088" />
+                                    <stop offset="0.8589" style="stop-color:#BF00A0" />
+                                    <stop offset="0.9357" style="stop-color:#BB00AF" />
+                                    <stop offset="1" style="stop-color:#B900B4" />
+                                </linearGradient>
+                                <path class="st0"
+                                    d="M500,1000L500,1000C223.9,1000,0,776.1,0,500v0C0,223.9,223.9,0,500,0h0c276.1,0,500,223.9,500,500v0  C1000,776.1,776.1,1000,500,1000z" />
+                                <g>
+                                    <path class="st1"
+                                        d="M500,220.2c91.1,0,101.9,0.3,137.9,2c33.3,1.5,51.4,7.1,63.4,11.8c15.9,6.2,27.3,13.6,39.2,25.5   c11.9,11.9,19.3,23.3,25.5,39.2c4.7,12,10.2,30.1,11.8,63.4c1.6,36,2,46.8,2,137.9s-0.3,101.9-2,137.9   c-1.5,33.3-7.1,51.4-11.8,63.4c-6.2,15.9-13.6,27.3-25.5,39.2c-11.9,11.9-23.3,19.3-39.2,25.5c-12,4.7-30.1,10.2-63.4,11.8   c-36,1.6-46.8,2-137.9,2s-101.9-0.3-137.9-2c-33.3-1.5-51.4-7.1-63.4-11.8c-15.9-6.2-27.3-13.6-39.2-25.5   c-11.9-11.9-19.3-23.3-25.5-39.2c-4.7-12-10.2-30.1-11.8-63.4c-1.6-36-2-46.8-2-137.9s0.3-101.9,2-137.9   c1.5-33.3,7.1-51.4,11.8-63.4c6.2-15.9,13.6-27.3,25.5-39.2c11.9-11.9,23.3-19.3,39.2-25.5c12-4.7,30.1-10.2,63.4-11.8   C398.1,220.5,408.9,220.2,500,220.2 M500,158.7c-92.7,0-104.3,0.4-140.7,2.1c-36.3,1.7-61.1,7.4-82.9,15.9   C254,185.3,234.9,197,216,216c-19,19-30.6,38-39.4,60.5c-8.4,21.7-14.2,46.5-15.9,82.9c-1.7,36.4-2.1,48-2.1,140.7   c0,92.7,0.4,104.3,2.1,140.7c1.7,36.3,7.4,61.1,15.9,82.9C185.3,746,197,765.1,216,784c19,19,38,30.6,60.5,39.4   c21.7,8.4,46.5,14.2,82.9,15.9c36.4,1.7,48,2.1,140.7,2.1s104.3-0.4,140.7-2.1c36.3-1.7,61.1-7.4,82.9-15.9   C746,814.7,765.1,803,784,784c19-19,30.6-38,39.4-60.5c8.4-21.7,14.2-46.5,15.9-82.9c1.7-36.4,2.1-48,2.1-140.7   s-0.4-104.3-2.1-140.7c-1.7-36.3-7.4-61.1-15.9-82.9C814.7,254,803,234.9,784,216c-19-19-38-30.6-60.5-39.4   c-21.7-8.4-46.5-14.2-82.9-15.9C604.3,159.1,592.7,158.7,500,158.7L500,158.7z" />
+                                    <path class="st1"
+                                        d="M500,324.7c-96.8,0-175.3,78.5-175.3,175.3S403.2,675.3,500,675.3S675.3,596.8,675.3,500   S596.8,324.7,500,324.7z M500,613.8c-62.8,0-113.8-50.9-113.8-113.8S437.2,386.2,500,386.2c62.8,0,113.8,50.9,113.8,113.8   S562.8,613.8,500,613.8z" />
+                                    <circle class="st1" cx="682.2" cy="317.8" r="41" />
+                                </g>
+                            </svg>
+                        </a>
+                        <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'googleplus'">
+                            <svg width="24" height="17" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1"
+                                style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"
+                                xml:space="preserve">
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: url(#SVGID_1_);
+                                    }
+
+                                    .st1 {
+                                        fill: #FFFFFF;
+                                    }
+                                </style>
+                                <linearGradient gradientUnits="userSpaceOnUse" id="SVGID_1_" x1="146.4465" x2="853.5535"
+                                    y1="853.5535" y2="146.4465">
+                                    <stop offset="0" style="stop-color:#FFD521" />
+                                    <stop offset="5.510481e-02" style="stop-color:#FFD020" />
+                                    <stop offset="0.1241" style="stop-color:#FEC01E" />
+                                    <stop offset="0.2004" style="stop-color:#FCA71B" />
+                                    <stop offset="0.2821" style="stop-color:#FA8316" />
+                                    <stop offset="0.3681" style="stop-color:#F85510" />
+                                    <stop offset="0.4563" style="stop-color:#F51E09" />
+                                    <stop offset="0.5" style="stop-color:#F30005" />
+                                    <stop offset="0.5035" style="stop-color:#F20007" />
+                                    <stop offset="0.5966" style="stop-color:#E1003B" />
+                                    <stop offset="0.6879" style="stop-color:#D30067" />
+                                    <stop offset="0.7757" style="stop-color:#C70088" />
+                                    <stop offset="0.8589" style="stop-color:#BF00A0" />
+                                    <stop offset="0.9357" style="stop-color:#BB00AF" />
+                                    <stop offset="1" style="stop-color:#B900B4" />
+                                </linearGradient>
+                                <path class="st0"
+                                    d="M500,1000L500,1000C223.9,1000,0,776.1,0,500v0C0,223.9,223.9,0,500,0h0c276.1,0,500,223.9,500,500v0  C1000,776.1,776.1,1000,500,1000z" />
+                                <g>
+                                    <path class="st1"
+                                        d="M500,220.2c91.1,0,101.9,0.3,137.9,2c33.3,1.5,51.4,7.1,63.4,11.8c15.9,6.2,27.3,13.6,39.2,25.5   c11.9,11.9,19.3,23.3,25.5,39.2c4.7,12,10.2,30.1,11.8,63.4c1.6,36,2,46.8,2,137.9s-0.3,101.9-2,137.9   c-1.5,33.3-7.1,51.4-11.8,63.4c-6.2,15.9-13.6,27.3-25.5,39.2c-11.9,11.9-23.3,19.3-39.2,25.5c-12,4.7-30.1,10.2-63.4,11.8   c-36,1.6-46.8,2-137.9,2s-101.9-0.3-137.9-2c-33.3-1.5-51.4-7.1-63.4-11.8c-15.9-6.2-27.3-13.6-39.2-25.5   c-11.9-11.9-19.3-23.3-25.5-39.2c-4.7-12-10.2-30.1-11.8-63.4c-1.6-36-2-46.8-2-137.9s0.3-101.9,2-137.9   c1.5-33.3,7.1-51.4,11.8-63.4c6.2-15.9,13.6-27.3,25.5-39.2c11.9-11.9,23.3-19.3,39.2-25.5c12-4.7,30.1-10.2,63.4-11.8   C398.1,220.5,408.9,220.2,500,220.2 M500,158.7c-92.7,0-104.3,0.4-140.7,2.1c-36.3,1.7-61.1,7.4-82.9,15.9   C254,185.3,234.9,197,216,216c-19,19-30.6,38-39.4,60.5c-8.4,21.7-14.2,46.5-15.9,82.9c-1.7,36.4-2.1,48-2.1,140.7   c0,92.7,0.4,104.3,2.1,140.7c1.7,36.3,7.4,61.1,15.9,82.9C185.3,746,197,765.1,216,784c19,19,38,30.6,60.5,39.4   c21.7,8.4,46.5,14.2,82.9,15.9c36.4,1.7,48,2.1,140.7,2.1s104.3-0.4,140.7-2.1c36.3-1.7,61.1-7.4,82.9-15.9   C746,814.7,765.1,803,784,784c19-19,30.6-38,39.4-60.5c8.4-21.7,14.2-46.5,15.9-82.9c1.7-36.4,2.1-48,2.1-140.7   s-0.4-104.3-2.1-140.7c-1.7-36.3-7.4-61.1-15.9-82.9C814.7,254,803,234.9,784,216c-19-19-38-30.6-60.5-39.4   c-21.7-8.4-46.5-14.2-82.9-15.9C604.3,159.1,592.7,158.7,500,158.7L500,158.7z" />
+                                    <path class="st1"
+                                        d="M500,324.7c-96.8,0-175.3,78.5-175.3,175.3S403.2,675.3,500,675.3S675.3,596.8,675.3,500   S596.8,324.7,500,324.7z M500,613.8c-62.8,0-113.8-50.9-113.8-113.8S437.2,386.2,500,386.2c62.8,0,113.8,50.9,113.8,113.8   S562.8,613.8,500,613.8z" />
+                                    <circle class="st1" cx="682.2" cy="317.8" r="41" />
+                                </g>
+                            </svg>
+                        </a>
+                        <a href="{{ item.socialurl }}" target="_blank" *ngIf="item.social === 'linkedin'">
+                            <?xml version="1.0" ?>
+                            <!DOCTYPE svg
+                                PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+                            <svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0"
+                                viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g>
+                                    <path
+                                        d="M32,30c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2V2c0-1.104,0.896-2,2-2h28c1.104,0,2,0.896,2,2V30z"
+                                        fill="#007BB5" />
+                                    <g>
+                                        <rect fill="#FFFFFF" height="14" width="4" x="7" y="11" />
+                                        <path
+                                            d="M20.499,11c-2.791,0-3.271,1.018-3.499,2v-2h-4v14h4v-8c0-1.297,0.703-2,2-2c1.266,0,2,0.688,2,2v8h4v-7    C25,14,24.479,11,20.499,11z"
+                                            fill="#FFFFFF" />
+                                        <circle cx="9" cy="8" fill="#FFFFFF" r="2" />
+                                    </g>
+                                </g>
+                                <g />
+                                <g />
+                                <g />
+                                <g />
+                                <g />
+                                <g />
+                            </svg>
+                        </a>
+                    </span>
+                    <span class="my-auto">
+                        <a (click)="changelang('en')" *ngIf="siteinfo.lang==='mn'">
+                            <div class="flagsen">
+                            </div>
+                        </a>
+                        <a (click)="changelang('mn')" *ngIf="siteinfo.lang==='en'">
+                            <div class="flagsmn">
+                            </div>
+                            <!-- <span class="exchange__flag">
+                        <i class="flag flag-eur"></i>
+                    </span>
+                    <span class="flag-icon flag-icon-mn mr-1"></span> -->
+                        </a>
+                    </span>
+                </div>
+                <div class="d-none d-lg-block col-5 my-auto ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="searchtext"
+                            placeholder="Search...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-sm" (click)="search()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- <button class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-nav">Default Nav</button>
+
+<div id="offcanvas-nav" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <ul class="uk-nav uk-nav-default">
+            <li><a onclick="test()">Active</a></li>
+            <li><a href="#">Active</a></li>
+            <li><a href="#">Active</a></li>
+            <li><a href="#">Active</a></li>
+            <li><a href="#">Active</a></li>
+        </ul>
+    </div>
+</div> -->
+
+<header class="header-02 head-sticky1 sticky-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div id="offcanvas-nav" uk-offcanvas="overlay: true">
+                    <div class="uk-offcanvas-bar">
+                        <button class="uk-offcanvas-close" type="button" uk-close></button>
+                        <ul class="uk-nav uk-nav-default">
+                            <ng-container *ngFor="let item of parentmenu(0)">
+                                <li class="uk-active uk-nav-header">
+                                    <a [href]="'/#/'+item.menutid+';id='+item.iDs" onclick="test()"
+                                        *ngIf="item.count===0 && item.menulink===''">{{item.menuname}}</a>
+                                    <a href="{{item.menulink}}" onclick="test()"
+                                        *ngIf="item.count===0 && item.menulink!==''">{{item.menuname}}</a>
+                                    <a href="#" *ngIf="item.count>0 && item.menulink===''"
+                                        onclick="test()">{{item.menuname}}</a>
+                                    <a href="{{item.menulink}}" onclick="test()"
+                                        *ngIf="item.count>0 && item.menulink!==''">{{item.menuname}}</a>
+                                </li>
+                                <li class="ml-2" *ngFor="let sub1 of parentmenu(item.iDs)">
+                                    <a href="{{sub1.menulink}}" onclick="test()"
+                                        *ngIf="sub1.count===0 && sub1.menulink!=='' && sub1.target ===''">{{sub1.menuname}}</a>
+                                    <a [href]="'/#/'+sub1.menutid+';id='+sub1.iDs" onclick="test()"
+                                        *ngIf="sub1.count===0 && sub1.menulink==='' && sub1.target ===''">{{sub1.menuname}}</a>
+                                </li>
+                            </ng-container>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <nav class="navbar navbar-expand-lg">
+                    <!-- logo Start-->
+
+                    <!-- logo End-->
+                    <div class="d-xl-none d-lg-none">
+                        <div class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-nav">
+                            <i class="nss-bars1"></i>
+                        </div>
+                    </div>
+                    <!-- Moblie Btn Start -->
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="clickmenu()"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="true" aria-label="Toggle navigation">
+                        <i class="nss-bars1"></i>
+                    </button> -->
+
+                    <!-- Moblie Btn End -->
+
+                    <!-- Nav Menu Start -->
+                    <div class="navbar-collapse sub-menu-bar collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="navbar-parent" *ngFor="let item of parentmenu(0)"
+                                [ngClass]="item.count>0? 'menu-item-has-children': ''" class="mx-1 text-keepall my-auto"
+                                [style.background-color]="item.bgcolor">
+                                <a (click)="menu='submenu'+item.iDs"
+                                    class="px-2 py-3 ml-0 text-center text-sm text-uppercase" *ngIf="item.count>0"
+                                    [style.color]="item.textcolor">{{item.menuname}}
+                                    <span class="submenu-toggler"
+                                        *ngIf="menu!=='submenu'+item.iDs || menu.split('-',1)[0]!=='subsubmenu'+item.iDs"
+                                        (click)="menu='submenu'+item.iDs"><i
+                                            class="nss-arrow-down1 animate-bounce"></i></span>
+                                    <span class="submenu-toggler"
+                                        *ngIf="menu==='submenu'+item.iDs || menu.split('-',1)[0]==='subsubmenu'+item.iDs"
+                                        (click)="menu=''"><i class="nss-arrow-up1"></i></span>
+                                </a>
+                                <a [href]="'/#/'+item.menutid+';id='+item.iDs" (click)="test()" id="submenu"
+                                    onclick="test()" class="px-2 py-3 ml-0 text-center text-sm text-uppercase"
+                                    *ngIf="item.count===0 && item.menulink===''">{{item.menuname}}</a>
+                                <a [routerLink]="item.menulink" target="{{item.target}}" (click)="test()"
+                                    onclick="test()" id="submenu"
+                                    class="px-2 py-3 ml-0 text-center text-sm text-uppercase"
+                                    *ngIf="item.count===0 && item.menulink!=='' && item.target ===''">{{item.menuname}}</a>
+                                <a href="{{item.menulink}}" target="{{item.target}}" (click)="test()" onclick="test()"
+                                    id="submenu" class="px-2 py-3 ml-0 text-center text-sm text-uppercase"
+                                    *ngIf="item.count===0 && item.menulink!=='' && item.target!==''">{{item.menuname}}</a>
+                                <ul class="sub-menu" *ngIf="item.count>0"
+                                    [ngClass]="mobile? menu==='submenu'+item.iDs || menu.split('-',1)[0]==='subsubmenu'+item.iDs ?'d-block':'d-none':''">
+                                    <li *ngFor="let sub1 of parentmenu(item.iDs)"
+                                        [ngClass]="sub1.count>0? 'menu-item-has-children': ''">
+                                        <a href="#" (click)="menu='subsubmenu'+item.iDs+'-'+sub1.iDs"
+                                            *ngIf="sub1.count>0" class="text-sm text-uppercase">{{sub1.menuname}}
+                                            <span class="submenu-toggler"
+                                                *ngIf="menu!=='subsubmenu'+item.iDs+'-'+sub1.iDs"
+                                                (click)="menu='subsubmenu'+item.iDs+'-'+sub1.iDs"><i
+                                                    class="nss-arrow-down1 animate-bounce"></i></span>
+                                            <span class="submenu-toggler"
+                                                *ngIf="menu==='subsubmenu'+item.iDs+'-'+sub1.iDs"
+                                                (click)="menu='submenu'+item.iDs"><i class="nss-arrow-up1"></i></span>
+                                        </a>
+                                        <a [href]="'/#/'+sub1.menutid+';id='+sub1.iDs" (click)="test()" id="submenu"
+                                            onclick="test()" *ngIf="sub1.count===0 && sub1.menulink===''"
+                                            class="text-sm text-uppercase">{{sub1.menuname}}</a>
+                                        <a href="{{sub1.menulink}}" target="{{sub1.target}}" (click)="test()"
+                                            id="submenu" onclick="test()" *ngIf="sub1.count===0 && sub1.menulink!==''"
+                                            class="text-sm text-uppercase"
+                                            (click)="link(sub1.menulink)">{{sub1.menuname}}</a>
+                                        <ul class="sub-menu" *ngIf="sub1.count>0"
+                                            [ngClass]="mobile? menu==='subsubmenu'+item.iDs+'-'+sub1.iDs?'d-block':'d-none':''">
+                                            <li *ngFor="let sub2 of parentmenu(sub1.iDs)">
+                                                <a [href]="'/#/'+sub2.menutid+';id='+sub2.iDs"
+                                                    class="text-uppercase">{{sub2.menuname}}</a>
+                                                <a [href]="sub2.menulink" target="{{sub2.target}}"
+                                                    *ngIf="sub2.count===0 && sub2.menulink!==''" class="text-uppercase"
+                                                    (click)="link(sub2.menulink)">{{sub2.menuname}}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Nav Menu End -->
+                    <!-- Btn -->
+                    <div class="nav-item dropdown d-block d-lg-none">
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="searchtext" placeholder="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" id="button-addon2" (click)="search()">
+                                    <i class="nss-search2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Btn -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header End -->
+<!-- <section class="topbar">
+
+</section> -->
+
+<!-- Popup Search Start -->
+<section class="popup_search_sec">
+    <div class="popup_search_overlay"></div>
+    <div class="pop_search_background">
+        <div class="middle_search">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="popup_search_form">
+                            <form method="get" action="#">
+                                <input type="search" name="s" id="s" placeholder="Type Words and Hit Enter">
+                                <button type="submit"><i class="nss-search2"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Popup Search End -->
+
+<div class="container1" *ngIf="listcount>0">
+    <div class="header-exchange">
+        <div class="d-flex">
+            <div class="mr-4">
+                <div class="header-exchange__name py-2">
+                    <svg fill="none" stroke="currentColor" class="d-block d-sm-none" height="20" width="20"
+                        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z">
+                        </path>
+                    </svg>
+                    <div *ngIf="siteinfo.lang==='mn'" class="d-none d-sm-block">
+                        <span>Валютын ханш</span>
+                        <svg fill="none" stroke="currentColor" height="13" class="ml-1" stroke-width="1.5"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                        </svg>
+                    </div>
+                    <div *ngIf="siteinfo.lang==='en'" class="d-none d-sm-block">
+                        Exchange rate
+                        <svg fill="none" stroke="currentColor" height="13" class="ml-1" stroke-width="1.5"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="header-exchange__value py-2">
+                    <marquee behavior="" direction="" *ngIf="currencylist">
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-us"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-us mr-1"></span>
+                            <span class="header-exchange__value-name">USD - <span>{{currencylist?.USD}}</span></span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-eu mr-1"></span>
+                            <span class="header-exchange__value-name">EUR - {{currencylist?.EUR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-jp mr-1"></span>
+                            <span class="header-exchange__value-name">JPY - {{currencylist?.JPY}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-ch mr-1"></span>
+                            <span class="header-exchange__value-name">CHF - {{currencylist?.CHF}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-se mr-1"></span>
+                            <span class="header-exchange__value-name">SEK - {{currencylist?.SEK}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-vg mr-1"></span>
+                            <span class="header-exchange__value-name">GBP - {{currencylist?.GBP}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-bg mr-1"></span>
+                            <span class="header-exchange__value-name">BGN - {{currencylist?.BGN}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-hu mr-1"></span>
+                            <span class="header-exchange__value-name">HUF - {{currencylist?.HUF}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-eg mr-1"></span>
+                            <span class="header-exchange__value-name">EGP - {{currencylist?.EGP}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-in mr-1"></span>
+                            <span class="header-exchange__value-name">INR - {{currencylist?.INR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-hk mr-1"></span>
+                            <span class="header-exchange__value-name">HKD - {{currencylist?.HKD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-ru mr-1"></span>
+                            <span class="header-exchange__value-name">RUB - {{currencylist?.RUB}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-kz mr-1"></span>
+                            <span class="header-exchange__value-name">KZT - {{currencylist?.KZT}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-cn mr-1"></span>
+                            <span class="header-exchange__value-name">CNY - {{currencylist?.CNY}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-kr mr-1"></span>
+                            <span class="header-exchange__value-name">KRW - {{currencylist?.KRW}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-kp mr-1"></span>
+                            <span class="header-exchange__value-name">KPW - {{currencylist?.KPW}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-ca mr-1"></span>
+                            <span class="header-exchange__value-name">CAD - {{currencylist?.CAD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-au mr-1"></span>
+                            <span class="header-exchange__value-name">AUD - {{currencylist?.AUD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-cz mr-1"></span>
+                            <span class="header-exchange__value-name">CZK - {{currencylist?.CZK}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-tw mr-1"></span>
+                            <span class="header-exchange__value-name">TWD - {{currencylist?.TWD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-th mr-1"></span>
+                            <span class="header-exchange__value-name">THB - {{currencylist?.THB}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-id mr-1"></span>
+                            <span class="header-exchange__value-name">IDR - {{currencylist?.IDR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-my mr-1"></span>
+                            <span class="header-exchange__value-name">MYR - {{currencylist?.MYR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-sg mr-1"></span>
+                            <span class="header-exchange__value-name">SGD - {{currencylist?.SGD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-ae mr-1"></span>
+                            <span class="header-exchange__value-name">AED - {{currencylist?.AED}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-kw mr-1"></span>
+                            <span class="header-exchange__value-name">KWD - {{currencylist?.KWD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-nz mr-1"></span>
+                            <span class="header-exchange__value-name">NZD - {{currencylist?.NZD}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-dk mr-1"></span>
+                            <span class="header-exchange__value-name">DKK - {{currencylist?.DKK}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-pl mr-1"></span>
+                            <span class="header-exchange__value-name">PLN - {{currencylist?.PLN}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-ua mr-1"></span>
+                            <span class="header-exchange__value-name">UAH - {{currencylist?.UAH}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-no mr-1"></span>
+                            <span class="header-exchange__value-name">NOK - {{currencylist?.NOK}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-np mr-1"></span>
+                            <span class="header-exchange__value-name">NPR - {{currencylist?.NPR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-za mr-1"></span>
+                            <span class="header-exchange__value-name">ZAR - {{currencylist?.ZAR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-tr mr-1"></span>
+                            <span class="header-exchange__value-name">TRY - {{currencylist?.TRY}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-xa mr-1"></span>
+                            <span class="header-exchange__value-name">XAU - {{currencylist?.XAU}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="flag-icon flag-icon-xa mr-1"></span>
+                            <span class="header-exchange__value-name">XAG - {{currencylist?.XAG}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="header-exchange__value-name">SDR - {{currencylist?.SDR}}</span>
+                        </span>
+                        <span class="px-2">
+                            <span class="exchange__flag">
+                                <i class="flag flag-eur"></i>
+                            </span>
+                            <span class="header-exchange__value-name">VND - {{currencylist?.VND}}</span>
+                        </span>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var util = UIkit.util;
+    var offcanvasEl = util.$('#offcanvas-nav');
+    console.log("test");
+    UIkit.offcanvas(offcanvasEl).hide();
+
+</script>
