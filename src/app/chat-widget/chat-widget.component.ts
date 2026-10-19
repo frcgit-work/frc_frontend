@@ -20,6 +20,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
   readonly messengerUrl: string;
   isOpen = false;
   selectedCategory: string | null = null;
+  showQuestionPicker = true;
   messages: ChatMessage[] = [];
   private shouldScroll = false;
 
@@ -53,6 +54,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
 
   startNewChat(): void {
     this.selectedCategory = null;
+    this.showQuestionPicker = true;
     this.messages = [
       {
         role: 'assistant',
@@ -64,12 +66,19 @@ export class ChatWidgetComponent implements AfterViewChecked {
 
   selectCategory(category: string): void {
     this.selectedCategory = category;
+    this.showQuestionPicker = true;
     this.messages = [...this.messages, { role: 'user', text: category }];
     this.shouldScroll = true;
   }
 
   showCategories(): void {
     this.selectedCategory = null;
+    this.showQuestionPicker = true;
+    this.shouldScroll = true;
+  }
+
+  showQuestions(): void {
+    this.showQuestionPicker = true;
     this.shouldScroll = true;
   }
 
@@ -79,6 +88,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
       { role: 'user', text: faq.question },
       { role: 'assistant', text: this.faqChatService.answerFor(faq) },
     ];
+    this.showQuestionPicker = false;
     this.shouldScroll = true;
   }
 }

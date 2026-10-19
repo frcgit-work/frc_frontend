@@ -139,6 +139,10 @@ app-chat-widget {
   }
 
   .message-row--user {
+    justify-content: flex-start;
+  }
+
+  .message-row--assistant {
     justify-content: flex-end;
   }
 
@@ -151,7 +155,7 @@ app-chat-widget {
   }
 
   .message-bubble {
-    max-width: 86%;
+    max-width: 90%;
     padding: 11px 13px;
     border: 1px solid #e7ebf2;
     border-radius: 14px 14px 14px 4px;
@@ -164,10 +168,20 @@ app-chat-widget {
   }
 
   .message-bubble--user {
-    border-color: var(--chat-primary);
+    border-radius: 14px 14px 14px 4px;
+    color: var(--chat-ink);
+    background: #fff;
+  }
+
+  .message-row--assistant .message-avatar {
+    order: 2;
+  }
+
+  .message-bubble--assistant {
+    border-color: #d6e3f7;
     border-radius: 14px 14px 4px 14px;
-    color: #fff;
-    background: var(--chat-primary);
+    color: var(--chat-primary-dark);
+    background: #eaf1fc;
   }
 
   .faq-picker {
@@ -203,6 +217,34 @@ app-chat-widget {
     font: inherit;
     font-size: 11px;
     font-weight: 700;
+  }
+
+  .faq-picker__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 0 2px 34px;
+  }
+
+  .faq-picker__continue {
+    min-height: 36px;
+    padding: 8px 12px;
+    border: 1px solid #d7e1ef;
+    border-radius: 10px;
+    color: var(--chat-primary-dark);
+    background: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .faq-picker__continue:hover,
+  .faq-picker__continue:focus-visible {
+    border-color: var(--chat-primary);
+    background: #edf3fc;
+    outline: none;
   }
 
   .faq-picker__option {

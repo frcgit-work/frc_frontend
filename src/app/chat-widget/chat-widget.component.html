@@ -27,9 +27,14 @@
         *ngFor="let message of messages"
         class="message-row"
         [class.message-row--user]="message.role === 'user'"
+        [class.message-row--assistant]="message.role === 'assistant'"
       >
         <div *ngIf="message.role === 'assistant'" class="message-avatar" aria-hidden="true">С</div>
-        <div class="message-bubble" [class.message-bubble--user]="message.role === 'user'">
+        <div
+          class="message-bubble"
+          [class.message-bubble--user]="message.role === 'user'"
+          [class.message-bubble--assistant]="message.role === 'assistant'"
+        >
           {{ message.text }}
         </div>
       </div>
@@ -47,7 +52,7 @@
         </button>
       </section>
 
-      <section *ngIf="selectedCategory" class="faq-picker" aria-label="Асуултууд">
+      <section *ngIf="selectedCategory && showQuestionPicker" class="faq-picker" aria-label="Асуултууд">
         <div class="faq-picker__heading">
           <p class="faq-picker__title">{{ selectedCategory }} · Асуултаа сонгоно уу</p>
           <button type="button" class="faq-picker__back" (click)="showCategories()">Ангилал солих</button>
@@ -61,6 +66,11 @@
           {{ faq.question }}
         </button>
       </section>
+
+      <div *ngIf="selectedCategory && !showQuestionPicker" class="faq-picker__actions">
+        <button type="button" class="faq-picker__continue" (click)="showQuestions()">Өөр асуулт сонгох</button>
+        <button type="button" class="faq-picker__back" (click)="showCategories()">Ангилал солих</button>
+      </div>
     </div>
 
     <a
