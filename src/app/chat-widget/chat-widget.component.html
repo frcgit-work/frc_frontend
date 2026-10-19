@@ -42,6 +42,17 @@
           </div>
         </div>
 
+        <section *ngIf="message.suggestions?.length" class="faq-match-options" aria-label="Ойролцоо FAQ асуултууд">
+          <button
+            *ngFor="let suggestion of message.suggestions"
+            type="button"
+            class="faq-match-options__button"
+            (click)="selectSuggestedQuestion(suggestion)"
+          >
+            {{ suggestion.question }}
+          </button>
+        </section>
+
         <article
           *ngIf="message.relatedNews || message.newsLoading || message.newsError"
           class="related-news"
@@ -65,7 +76,7 @@
         </article>
       </ng-container>
 
-      <section *ngIf="!selectedCategory" class="faq-picker" aria-label="Түгээмэл асуултын ангиллууд">
+      <section *ngIf="!selectedCategory && showQuestionPicker" class="faq-picker" aria-label="Түгээмэл асуултын ангиллууд">
         <p class="faq-picker__title">Ангилал сонгоно уу</p>
         <button
           *ngFor="let category of categories"
@@ -97,22 +108,31 @@
         <button type="button" class="faq-picker__continue" (click)="showQuestions()">Өөр асуулт сонгох</button>
         <button type="button" class="faq-picker__back" (click)="showCategories()">Ангилал солих</button>
       </div>
+
+      <div *ngIf="!selectedCategory && !showQuestionPicker" class="faq-picker__actions">
+        <button type="button" class="faq-picker__back" (click)="showCategories()">Ангиллууд харах</button>
+      </div>
     </div>
 
-    <label class="question-composer">
-      <span class="question-composer__label">Асуултаа текстээр бичнэ үү</span>
+    <div class="question-composer">
+      <label class="question-composer__label" for="faq-question-input">Асуултаа бичээд FAQ-гаас хариулт хайна уу</label>
       <textarea
+        id="faq-question-input"
         [(ngModel)]="questionDraft"
         class="question-composer__input"
         rows="2"
         maxlength="1000"
+        (keydown.enter)="searchQuestionOnEnter($event)"
         aria-label="Текстээр асуулт бичих"
         placeholder="Асуух зүйлээ энд бичнэ үү..."
       ></textarea>
-      <span class="question-composer__hint">
-        Messenger нээгдсэний дараа хуулсан асуултаа буулган илгээнэ үү.
-      </span>
-    </label>
+      <div class="question-composer__actions">
+        <span class="question-composer__hint">Хариулт олдохгүй бол Messenger-т холбогдоно уу.</span>
+        <button type="button" class="question-composer__submit" [disabled]="!questionDraft.trim()" (click)="searchQuestion()">
+          Хариулт хайх
+        </button>
+      </div>
+    </div>
 
     <a
       class="messenger-contact"

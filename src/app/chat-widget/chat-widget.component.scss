@@ -201,6 +201,35 @@ app-chat-widget {
     background: #eaf1fc;
   }
 
+  .faq-match-options {
+    display: flex;
+    max-width: calc(90% - 34px);
+    flex-direction: column;
+    align-self: flex-end;
+    gap: 6px;
+    margin-right: 34px;
+  }
+
+  .faq-match-options__button {
+    padding: 8px 10px;
+    border: 1px solid #d6e3f7;
+    border-radius: 9px;
+    color: var(--chat-primary-dark);
+    background: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .faq-match-options__button:hover,
+  .faq-match-options__button:focus-visible {
+    border-color: var(--chat-primary);
+    background: #f4f7fc;
+    outline: none;
+  }
+
   .related-news {
     display: flex;
     max-width: calc(90% - 26px);
@@ -378,9 +407,36 @@ app-chat-widget {
   }
 
   .question-composer__hint {
+    min-width: 0;
+    flex: 1;
     color: var(--chat-muted);
     font-size: 10px;
     line-height: 1.35;
+  }
+
+  .question-composer__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .question-composer__submit {
+    flex: 0 0 auto;
+    padding: 7px 11px;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    background: var(--chat-primary);
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .question-composer__submit:disabled {
+    background: #9aa9c1;
+    cursor: not-allowed;
   }
 
   .messenger-contact {
