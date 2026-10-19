@@ -1,0 +1,96 @@
+<div class="chat-widget">
+  <section
+    *ngIf="isOpen"
+    class="chat-panel"
+    role="dialog"
+    aria-label="СЗХ туслах чат"
+    aria-modal="false"
+  >
+    <header class="chat-header">
+      <div class="assistant-avatar" aria-hidden="true">СЗХ</div>
+      <div class="assistant-details">
+        <h2>СЗХ туслах</h2>
+        <span><i aria-hidden="true"></i> Туршилтын хувилбар</span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="icon-button" aria-label="Шинэ чат эхлүүлэх" title="Шинэ чат" (click)="startNewChat()">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 4v4h4M4 13a8 8 0 0 0 14.9 3M20 20v-4h-4" /></svg>
+        </button>
+        <button type="button" class="icon-button" aria-label="Чатыг хаах" title="Хаах" (click)="closeChat()">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <div #messagesViewport class="chat-messages" aria-live="polite" aria-relevant="additions text">
+      <div
+        *ngFor="let message of messages"
+        class="message-row"
+        [class.message-row--user]="message.role === 'user'"
+      >
+        <div *ngIf="message.role === 'assistant'" class="message-avatar" aria-hidden="true">С</div>
+        <div class="message-content">
+          <div class="message-bubble" [class.message-bubble--user]="message.role === 'user'">
+            {{ message.text }}
+          </div>
+          <a
+            *ngIf="message.relatedContent as content"
+            class="content-suggestion"
+            [routerLink]="content.url"
+            (click)="closeChat()"
+          >
+            <span class="content-suggestion__icon" aria-hidden="true">↗</span>
+            <span>{{ content.label }}</span>
+            <span aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+
+      <div *ngIf="isTyping" class="message-row" aria-label="Хариулт бэлдэж байна">
+        <div class="message-avatar" aria-hidden="true">С</div>
+        <div class="message-bubble typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+      </div>
+
+      <div *ngIf="messages.length === 1" class="suggested-questions" aria-label="Түгээмэл асуултын жишээ">
+        <p>Жишээ асуултууд</p>
+        <button
+          *ngFor="let question of suggestedQuestions"
+          type="button"
+          (click)="send(question)"
+        >
+          {{ question }}
+        </button>
+      </div>
+    </div>
+
+    <form class="chat-composer" (ngSubmit)="send()">
+      <label class="visually-hidden" for="chat-message-input">Асуултаа бичнэ үү</label>
+      <input
+        id="chat-message-input"
+        type="text"
+        name="message"
+        [(ngModel)]="draft"
+        placeholder="Асуултаа бичнэ үү..."
+        autocomplete="off"
+        [disabled]="isTyping"
+      />
+      <button type="submit" aria-label="Мессеж илгээх" [disabled]="!draft.trim() || isTyping">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7.2 18-3.8-7-7-3.8L21 3Zm-11 11 5-5" /></svg>
+      </button>
+    </form>
+    <p class="demo-note">Туршилтын горим · Албан ёсны хариулт биш</p>
+  </section>
+
+  <button
+    *ngIf="!isOpen"
+    type="button"
+    class="chat-launcher"
+    aria-label="СЗХ туслах чатыг нээх"
+    aria-haspopup="dialog"
+    [attr.aria-expanded]="isOpen"
+    (click)="openChat()"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2 1.4-4.2A7.5 7.5 0 1 1 20 11.5Z" /><path d="M8 11.5h.01M12 11.5h.01M16 11.5h.01" /></svg>
+    <span>Чатлах</span>
+  </button>
+</div>

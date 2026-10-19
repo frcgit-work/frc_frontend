@@ -37,6 +37,7 @@ import { View1Component } from './view1/view1.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartFrameComponent } from './chart-frame/chart-frame.component';
 import { SnowComponent } from './shared/ui/snow/snow.component';
+import { ChatWidgetComponent } from './chat-widget/chat-widget.component';
 // import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
@@ -72,7 +73,8 @@ import { SnowComponent } from './shared/ui/snow/snow.component';
   SafeHtmlPipe,
   View1Component,
   ChartFrameComponent,
-  SnowComponent
+  SnowComponent,
+  ChatWidgetComponent
  ],
  imports: [
   BrowserModule,
