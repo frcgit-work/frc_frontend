@@ -1,0 +1,57 @@
+name: Deploy Angular preview
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "16.20.2"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build preview
+        run: >
+          npm run build --
+          --configuration development
+          --source-map=false
+          --base-href /frc_frontend/
+
+      - name: Add route fallback
+        run: cp dist/frc-home-ng/index.html dist/frc-home-ng/404.html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/frc-home-ng
+
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
