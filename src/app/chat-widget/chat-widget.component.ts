@@ -32,6 +32,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
   isOpen = false;
   selectedCategory: string | null = null;
   showQuestionPicker = true;
+  questionDraft = '';
   messages: ChatMessage[] = [];
   private shouldScroll = false;
   private newsRequestVersion = 0;
@@ -72,6 +73,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
     this.newsRequestVersion += 1;
     this.selectedCategory = null;
     this.showQuestionPicker = true;
+    this.questionDraft = '';
     this.messages = [
       {
         role: 'assistant',
@@ -107,6 +109,49 @@ export class ChatWidgetComponent implements AfterViewChecked {
     ];
     this.showQuestionPicker = false;
     this.loadLatestNews(this.messages.length - 1);
+    this.shouldScroll = true;
+  }
+
+  handoffToMessenger(): void {
+    const question = this.questionDraft.trim();
+    if (!question) {
+      return;
+    }
+
+    this.messages = [
+      ...this.messages,
+      { role: 'user', text: question },
+      { role: 'assistant', text: 'Асуултыг Messenger рүү дамжуулахад бэлдэж байна...' },
+    ];
+    this.questionDraft = '';
+    this.shouldScroll = true;
+
+    const statusIndex = this.messages.length - 1;
+    const conversationVersion = this.newsRequestVersion;
+    const copiedMessage = 'Асуулт санах ойд хуулагдлаа. Messenger дээр буулган илгээнэ үү.';
+    const manualCopyMessage = 'Асуулт чатанд үлдлээ. Messenger нээгдэхэд дээрх асуултыг хуулж буулган илгээнэ үү.';
+
+    try {
+      if (!navigator.clipboard?.writeText) {
+        this.updateHandoffStatus(statusIndex, conversationVersion, manualCopyMessage);
+        return;
+      }
+
+      navigator.clipboard.writeText(question).then(
+        () => this.updateHandoffStatus(statusIndex, conversationVersion, copiedMessage),
+        () => this.updateHandoffStatus(statusIndex, conversationVersion, manualCopyMessage)
+      );
+    } catch {
+      this.updateHandoffStatus(statusIndex, conversationVersion, manualCopyMessage);
+    }
+  }
+
+  private updateHandoffStatus(index: number, conversationVersion: number, text: string): void {
+    if (conversationVersion !== this.newsRequestVersion || !this.messages[index]) {
+      return;
+    }
+
+    this.messages[index] = { ...this.messages[index], text };
     this.shouldScroll = true;
   }
 

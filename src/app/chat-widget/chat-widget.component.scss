@@ -344,6 +344,45 @@ app-chat-widget {
     font-weight: 700;
   }
 
+  .question-composer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 14px 0;
+  }
+
+  .question-composer__label {
+    color: var(--chat-ink);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .question-composer__input {
+    width: 100%;
+    min-height: 58px;
+    max-height: 110px;
+    resize: vertical;
+    padding: 9px 11px;
+    border: 1px solid #d7e1ef;
+    border-radius: 10px;
+    color: var(--chat-ink);
+    background: #fff;
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .question-composer__input:focus {
+    border-color: var(--chat-primary);
+    outline: 2px solid rgba(41, 87, 164, 0.14);
+  }
+
+  .question-composer__hint {
+    color: var(--chat-muted);
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
   .messenger-contact {
     display: flex;
     min-height: 48px;
