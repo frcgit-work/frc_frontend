@@ -184,6 +184,47 @@ app-chat-widget {
     background: #eaf1fc;
   }
 
+  .related-news {
+    display: flex;
+    max-width: calc(90% - 26px);
+    flex-direction: column;
+    align-self: flex-end;
+    gap: 5px;
+    margin-right: 34px;
+    padding: 10px 12px;
+    border: 1px solid #d6e3f7;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .related-news__label {
+    color: var(--chat-muted);
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .related-news__link {
+    color: var(--chat-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.45;
+    text-decoration: none;
+  }
+
+  .related-news__link:hover,
+  .related-news__link:focus-visible {
+    color: var(--chat-primary);
+    text-decoration: underline;
+  }
+
+  .related-news__date,
+  .related-news__state {
+    margin: 0;
+    color: var(--chat-muted);
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
   .faq-picker {
     display: flex;
     flex-direction: column;
@@ -383,6 +424,10 @@ app-chat-widget {
     .chat-launcher {
       right: 16px;
       bottom: 16px;
+    }
+
+    .related-news {
+      max-width: calc(100% - 34px);
     }
   }
 

@@ -23,21 +23,45 @@
     </header>
 
     <div #messagesViewport class="chat-messages" aria-live="polite" aria-relevant="additions text">
-      <div
-        *ngFor="let message of messages"
-        class="message-row"
-        [class.message-row--user]="message.role === 'user'"
-        [class.message-row--assistant]="message.role === 'assistant'"
-      >
-        <div *ngIf="message.role === 'assistant'" class="message-avatar" aria-hidden="true">С</div>
+      <ng-container *ngFor="let message of messages">
         <div
-          class="message-bubble"
-          [class.message-bubble--user]="message.role === 'user'"
-          [class.message-bubble--assistant]="message.role === 'assistant'"
+          *ngIf="message.text"
+          class="message-row"
+          [class.message-row--user]="message.role === 'user'"
+          [class.message-row--assistant]="message.role === 'assistant'"
         >
-          {{ message.text }}
+          <div *ngIf="message.role === 'assistant'" class="message-avatar" aria-hidden="true">С</div>
+          <div
+            class="message-bubble"
+            [class.message-bubble--user]="message.role === 'user'"
+            [class.message-bubble--assistant]="message.role === 'assistant'"
+          >
+            {{ message.text }}
+          </div>
         </div>
-      </div>
+
+        <article
+          *ngIf="message.relatedNews || message.newsLoading || message.newsError"
+          class="related-news"
+          aria-live="polite"
+        >
+          <span class="related-news__label">Сайтын хамгийн сүүлийн мэдээ</span>
+          <a
+            *ngIf="message.relatedNews"
+            class="related-news__link"
+            [routerLink]="['/view', message.relatedNews.iDs]"
+          >
+            {{ message.relatedNews.subject }}
+          </a>
+          <time *ngIf="message.relatedNews?.ognoo" class="related-news__date">
+            {{ message.relatedNews?.ognoo | date: 'yyyy.MM.dd' }}
+          </time>
+          <p *ngIf="message.newsLoading" class="related-news__state">Мэдээг ачаалж байна...</p>
+          <p *ngIf="message.newsError && !message.relatedNews" class="related-news__state">
+            Одоогоор мэдээ авах боломжгүй байна.
+          </p>
+        </article>
+      </ng-container>
 
       <section *ngIf="!selectedCategory" class="faq-picker" aria-label="Түгээмэл асуултын ангиллууд">
         <p class="faq-picker__title">Ангилал сонгоно уу</p>

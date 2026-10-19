@@ -29,7 +29,7 @@ export class FaqChatService {
   }
 
   answerFor(faq: FaqRecord): string {
-    if (faq.status === 'draft' && faq.answer.trim()) {
+    if (faq.status !== 'needs_review' && faq.answer.trim()) {
       return faq.answer;
     }
 

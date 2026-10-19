@@ -1,4 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
+import { NewsService } from 'src/app/shared/news.service';
+import { LanguageService } from 'src/app/shared/service/language.service';
 import { FaqChatService, FaqCategory } from './faq-chat.service';
 import { FaqRecord } from './faq-data';
 
@@ -7,6 +9,15 @@ type MessageRole = 'assistant' | 'user';
 interface ChatMessage {
   role: MessageRole;
   text: string;
+  relatedNews?: SiteNewsItem | null;
+  newsLoading?: boolean;
+  newsError?: boolean;
+}
+
+interface SiteNewsItem {
+  iDs: number | string;
+  subject: string;
+  ognoo?: string;
 }
 
 @Component({
@@ -23,8 +34,13 @@ export class ChatWidgetComponent implements AfterViewChecked {
   showQuestionPicker = true;
   messages: ChatMessage[] = [];
   private shouldScroll = false;
+  private newsRequestVersion = 0;
 
-  constructor(private readonly faqChatService: FaqChatService) {
+  constructor(
+    private readonly faqChatService: FaqChatService,
+    private readonly newsService: NewsService,
+    private readonly language: LanguageService
+  ) {
     this.categories = faqChatService.categories;
     this.messengerUrl = faqChatService.messengerUrl;
     this.startNewChat();
@@ -53,6 +69,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
   }
 
   startNewChat(): void {
+    this.newsRequestVersion += 1;
     this.selectedCategory = null;
     this.showQuestionPicker = true;
     this.messages = [
@@ -86,9 +103,45 @@ export class ChatWidgetComponent implements AfterViewChecked {
     this.messages = [
       ...this.messages,
       { role: 'user', text: faq.question },
-      { role: 'assistant', text: this.faqChatService.answerFor(faq) },
+      { role: 'assistant', text: this.faqChatService.answerFor(faq), newsLoading: true },
     ];
     this.showQuestionPicker = false;
+    this.loadLatestNews(this.messages.length - 1);
     this.shouldScroll = true;
+  }
+
+  private loadLatestNews(messageIndex: number): void {
+    const lang = this.language.loadLang.getValue() === 'en' ? 'en' : 'mn';
+    const menuId = lang === 'mn' ? 61 : 616;
+    const requestVersion = this.newsRequestVersion;
+
+    this.newsService.newslist(menuId, { site: 'main', lang }).subscribe({
+      next: (items: SiteNewsItem[]) => {
+        if (requestVersion !== this.newsRequestVersion) {
+          return;
+        }
+
+        const relatedNews = Array.isArray(items) ? items[0] || null : null;
+        this.messages[messageIndex] = {
+          ...this.messages[messageIndex],
+          relatedNews,
+          newsLoading: false,
+          newsError: !relatedNews,
+        };
+        this.shouldScroll = true;
+      },
+      error: () => {
+        if (requestVersion !== this.newsRequestVersion) {
+          return;
+        }
+
+        this.messages[messageIndex] = {
+          ...this.messages[messageIndex],
+          newsLoading: false,
+          newsError: true,
+        };
+        this.shouldScroll = true;
+      },
+    });
   }
 }
