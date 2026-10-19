@@ -39,6 +39,7 @@ jobs:
           npm run build --
           --configuration development
           --source-map=false
+          --output-hashing=all
           --base-href /frc_frontend/
 
       - name: Add route fallback
