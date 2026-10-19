@@ -1,7 +1,7 @@
 import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { NewsService } from 'src/app/shared/news.service';
 import { LanguageService } from 'src/app/shared/service/language.service';
-import { FaqChatService, FaqCategory, FaqSearchResult } from './faq-chat.service';
+import { FaqChatService, FaqCategory } from './faq-chat.service';
 import { FaqRecord } from './faq-data';
 
 type MessageRole = 'assistant' | 'user';
@@ -12,7 +12,6 @@ interface ChatMessage {
   relatedNews?: SiteNewsItem | null;
   newsLoading?: boolean;
   newsError?: boolean;
-  suggestions?: FaqRecord[];
 }
 
 interface SiteNewsItem {
@@ -78,7 +77,7 @@ export class ChatWidgetComponent implements AfterViewChecked {
     this.messages = [
       {
         role: 'assistant',
-        text: 'Сайн байна уу! Ангилал сонгох эсвэл асуултаа бичиж FAQ-гаас хайна уу.',
+        text: 'Сайн байна уу! Түгээмэл асуултын ангилал сонгоод, асуултаа товшино уу.',
       },
     ];
     this.shouldScroll = true;
@@ -103,59 +102,12 @@ export class ChatWidgetComponent implements AfterViewChecked {
   }
 
   selectQuestion(faq: FaqRecord): void {
-    this.messages = [...this.messages, { role: 'user', text: faq.question }];
-    this.showQuestionPicker = false;
-    this.appendFaqAnswer(faq);
-  }
-
-  searchQuestion(): void {
-    const question = this.questionDraft.trim();
-    if (!question) {
-      return;
-    }
-
-    this.selectedCategory = null;
-    this.showQuestionPicker = false;
-    this.messages = [...this.messages, { role: 'user', text: question }];
-    const matches = this.faqChatService.search(question);
-    const bestMatch = matches[0];
-
-    if (bestMatch && this.faqChatService.isConfidentMatch(question, bestMatch)) {
-      this.appendFaqAnswer(bestMatch.faq);
-    } else {
-      this.messages = [
-        ...this.messages,
-        {
-          role: 'assistant',
-          text: matches.length
-            ? 'Яг тохирох хариулт олдсонгүй. Доорх ойролцоо асуултаас сонгоно уу.'
-            : 'Энэ асуултад тохирох мэдээлэл FAQ-д олдсонгүй. Асуултаа өөрөөр бичих эсвэл Messenger-т холбогдоно уу.',
-          suggestions: matches.map((match: FaqSearchResult) => match.faq),
-        },
-      ];
-    }
-
-    this.shouldScroll = true;
-  }
-
-  searchQuestionOnEnter(event: KeyboardEvent): void {
-    if (event.shiftKey || event.isComposing) {
-      return;
-    }
-
-    event.preventDefault();
-    this.searchQuestion();
-  }
-
-  selectSuggestedQuestion(faq: FaqRecord): void {
-    this.appendFaqAnswer(faq);
-  }
-
-  private appendFaqAnswer(faq: FaqRecord): void {
     this.messages = [
       ...this.messages,
+      { role: 'user', text: faq.question },
       { role: 'assistant', text: this.faqChatService.answerFor(faq), newsLoading: true },
     ];
+    this.showQuestionPicker = false;
     this.loadLatestNews(this.messages.length - 1);
     this.shouldScroll = true;
   }
@@ -166,13 +118,10 @@ export class ChatWidgetComponent implements AfterViewChecked {
       return;
     }
 
-    const lastUserQuestion = [...this.messages].reverse().find((message) => message.role === 'user')?.text;
-    const handoffMessages: ChatMessage[] = lastUserQuestion === question
-      ? [...this.messages]
-      : [...this.messages, { role: 'user', text: question }];
     this.messages = [
-      ...handoffMessages,
-      { role: 'assistant', text: 'Асуултыг Messenger-т хуулахад бэлдэж байна...' },
+      ...this.messages,
+      { role: 'user', text: question },
+      { role: 'assistant', text: 'Асуултыг Messenger рүү дамжуулахад бэлдэж байна...' },
     ];
     this.questionDraft = '';
     this.shouldScroll = true;
