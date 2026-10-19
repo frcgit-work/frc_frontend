@@ -1,81 +1,38 @@
 import { Injectable } from '@angular/core';
+import { FAQ_RECORDS, FaqRecord } from './faq-data';
 
-export interface RelatedContent {
-  label: string;
-  url: string;
-}
-
-export interface FaqChatReply {
-  answer: string;
-  relatedContent: RelatedContent;
-}
-
-interface MockFaq {
-  matchTerms: string[];
-  answer: string;
-  relatedContent: RelatedContent;
+export interface FaqCategory {
+  name: string;
+  questionCount: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class FaqChatService {
-  private readonly mockFaqs: MockFaq[] = [
-    {
-      matchTerms: ['өргөдөл', 'гомдол', 'санал хүсэлт'],
-      answer:
-        'Туршилтын хариулт: өргөдөл, гомдол гаргах албан зааврыг FAQ-ийн баталгаажсан мэдээллээр энд харуулна.',
-      relatedContent: { label: 'Холбоо барих', url: '/contact' },
-    },
-    {
-      matchTerms: ['даатгал', 'нөхөн төлбөр'],
-      answer:
-        'Туршилтын хариулт: даатгалын тухай баталгаажсан FAQ-г холбоход энэ хэсэгт хариулт болон холбогдох агуулга гарна.',
-      relatedContent: { label: 'Түгээмэл асуулт', url: '/faq' },
-    },
-    {
-      matchTerms: ['үнэт цаас', 'хөрөнгийн зах зээл', 'брокер'],
-      answer:
-        'Туршилтын хариулт: үнэт цаасны зах зээлийн баталгаажсан FAQ-г холбоход энэ хэсэгт хариулт болон холбогдох агуулга гарна.',
-      relatedContent: { label: 'Түгээмэл асуулт', url: '/faq' },
-    },
-  ];
+  readonly messengerUrl = 'https://m.me/MongoliaFRC';
 
-  readonly suggestedQuestions = [
-    'Өргөдөл, гомдол хэрхэн гаргах вэ?',
-    'Даатгалын талаар мэдээлэл авах',
-    'Үнэт цаасны зах зээлийн асуулт',
-  ];
+  private readonly faqRecords = FAQ_RECORDS;
 
-  findReply(question: string): FaqChatReply {
-    const normalizedQuestion = this.normalize(question);
-    const match = this.mockFaqs
-      .map((faq) => ({
-        faq,
-        score: faq.matchTerms.filter((term) =>
-          normalizedQuestion.includes(this.normalize(term))
-        ).length,
-      }))
-      .filter((result) => result.score > 0)
-      .sort((a, b) => b.score - a.score)[0];
+  get categories(): FaqCategory[] {
+    const counts = new Map<string, number>();
+    this.faqRecords.forEach((faq) => {
+      counts.set(faq.category, (counts.get(faq.category) || 0) + 1);
+    });
 
-    if (match) {
-      return {
-        answer: match.faq.answer,
-        relatedContent: match.faq.relatedContent,
-      };
-    }
-
-    return {
-      answer:
-        'Энэ туршилтын хувилбар цөөн жишээ асуултаар ажиллаж байна. Баталгаажсан FAQ мэдээллийг холбоход таны асуултад тохирох хариултыг санал болгоно.',
-      relatedContent: { label: 'Түгээмэл асуулт', url: '/faq' },
-    };
+    return Array.from(counts.entries()).map(([name, questionCount]) => ({
+      name,
+      questionCount,
+    }));
   }
 
-  private normalize(value: string): string {
-    return value
-      .toLocaleLowerCase('mn-MN')
-      .replace(/[^0-9a-zа-яёөү\s]/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
+  questionsForCategory(category: string): FaqRecord[] {
+    return this.faqRecords.filter((faq) => faq.category === category);
+  }
+
+  answerFor(faq: FaqRecord): string {
+    if (faq.status === 'draft' && faq.answer.trim()) {
+      return faq.answer;
+    }
+
+    return 'Энэ асуултын хариулт Excel-д хараахан бөглөгдөөгүй эсвэл нягталж дуусаагүй байна. Ажилтантай Messenger-ээр холбогдоно уу.';
   }
 }

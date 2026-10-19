@@ -1,12 +1,12 @@
 import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
-import { FaqChatService, RelatedContent } from './faq-chat.service';
+import { FaqChatService, FaqCategory } from './faq-chat.service';
+import { FaqRecord } from './faq-data';
 
 type MessageRole = 'assistant' | 'user';
 
 interface ChatMessage {
   role: MessageRole;
   text: string;
-  relatedContent?: RelatedContent;
 }
 
 @Component({
@@ -16,17 +16,23 @@ interface ChatMessage {
 export class ChatWidgetComponent implements AfterViewChecked {
   @ViewChild('messagesViewport') private messagesViewport?: ElementRef<HTMLDivElement>;
 
-  readonly suggestedQuestions: string[];
+  readonly categories: FaqCategory[];
+  readonly messengerUrl: string;
   isOpen = false;
-  draft = '';
-  isTyping = false;
+  selectedCategory: string | null = null;
   messages: ChatMessage[] = [];
   private shouldScroll = false;
-  private replyTimer?: number;
 
   constructor(private readonly faqChatService: FaqChatService) {
-    this.suggestedQuestions = faqChatService.suggestedQuestions;
+    this.categories = faqChatService.categories;
+    this.messengerUrl = faqChatService.messengerUrl;
     this.startNewChat();
+  }
+
+  get activeQuestions(): FaqRecord[] {
+    return this.selectedCategory
+      ? this.faqChatService.questionsForCategory(this.selectedCategory)
+      : [];
   }
 
   ngAfterViewChecked(): void {
@@ -46,45 +52,33 @@ export class ChatWidgetComponent implements AfterViewChecked {
   }
 
   startNewChat(): void {
-    if (this.replyTimer !== undefined) {
-      window.clearTimeout(this.replyTimer);
-      this.replyTimer = undefined;
-    }
-    this.draft = '';
-    this.isTyping = false;
+    this.selectedCategory = null;
     this.messages = [
       {
         role: 'assistant',
-        text: 'Сайн байна уу! Түгээмэл асуултаас сонгох эсвэл асуултаа бичээрэй.',
+        text: 'Сайн байна уу! Түгээмэл асуултын ангилал сонгоод, асуултаа товшино уу.',
       },
     ];
     this.shouldScroll = true;
   }
 
-  send(question = this.draft): void {
-    const text = question.trim();
-    if (!text || this.isTyping) {
-      return;
-    }
-
-    this.messages = [...this.messages, { role: 'user', text }];
-    this.draft = '';
-    this.isTyping = true;
+  selectCategory(category: string): void {
+    this.selectedCategory = category;
+    this.messages = [...this.messages, { role: 'user', text: category }];
     this.shouldScroll = true;
+  }
 
-    this.replyTimer = window.setTimeout(() => {
-      const reply = this.faqChatService.findReply(text);
-      this.messages = [
-        ...this.messages,
-        {
-          role: 'assistant',
-          text: reply.answer,
-          relatedContent: reply.relatedContent,
-        },
-      ];
-      this.isTyping = false;
-      this.replyTimer = undefined;
-      this.shouldScroll = true;
-    }, 450);
+  showCategories(): void {
+    this.selectedCategory = null;
+    this.shouldScroll = true;
+  }
+
+  selectQuestion(faq: FaqRecord): void {
+    this.messages = [
+      ...this.messages,
+      { role: 'user', text: faq.question },
+      { role: 'assistant', text: this.faqChatService.answerFor(faq) },
+    ];
+    this.shouldScroll = true;
   }
 }
