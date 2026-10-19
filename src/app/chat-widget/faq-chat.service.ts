@@ -8,7 +8,7 @@ export interface FaqCategory {
 
 @Injectable({ providedIn: 'root' })
 export class FaqChatService {
-  readonly messengerUrl = 'https://m.me/MongoliaFRC';
+  readonly messengerUrl = 'https://www.messenger.com/t/706746946020404';
 
   private readonly faqRecords = FAQ_RECORDS;
 
