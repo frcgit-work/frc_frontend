@@ -3,13 +3,15 @@
     *ngIf="isOpen"
     class="chat-panel"
     role="dialog"
-    aria-label="СЗХ туслах чат"
+    aria-label="Санхүүгийн зохицуулах хорооны дижитал туслах чат"
     aria-modal="false"
   >
     <header class="chat-header">
-      <div class="assistant-avatar" aria-hidden="true">СЗХ</div>
+      <div class="assistant-avatar organization-logo" aria-hidden="true">
+        <img src="assets/images/frc-chat-logo.png" alt="" />
+      </div>
       <div class="assistant-details">
-        <h2>СЗХ туслах</h2>
+        <h2>Санхүүгийн зохицуулах хорооны дижитал туслах</h2>
         <span><i aria-hidden="true"></i> Түгээмэл асуулт, хариулт</span>
       </div>
       <div class="header-actions">
@@ -115,12 +117,14 @@
     *ngIf="!isOpen"
     type="button"
     class="chat-launcher"
-    aria-label="СЗХ туслах чатыг нээх"
+    aria-label="Санхүүгийн зохицуулах хорооны дижитал туслах чатыг нээх"
     aria-haspopup="dialog"
     [attr.aria-expanded]="isOpen"
     (click)="openChat()"
   >
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2 1.4-4.2A7.5 7.5 0 1 1 20 11.5Z" /><path d="M8 11.5h.01M12 11.5h.01M16 11.5h.01" /></svg>
+    <span class="organization-logo organization-logo--launcher" aria-hidden="true">
+      <img src="assets/images/frc-chat-logo.png" alt="" />
+    </span>
     <span>Чатлах</span>
   </button>
 </div>

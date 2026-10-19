@@ -50,10 +50,27 @@ app-chat-widget {
   .assistant-avatar {
     width: 42px;
     height: 42px;
-    border: 1px solid rgba(255, 255, 255, 0.42);
-    color: #fff;
-    background: rgba(255, 255, 255, 0.15);
-    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 11px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .organization-logo {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .organization-logo img {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 250%;
+    max-width: none;
+    height: auto;
   }
 
   .assistant-details {
@@ -64,8 +81,9 @@ app-chat-widget {
   .assistant-details h2 {
     margin: 0 0 5px;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
+    line-height: 1.25;
   }
 
   .assistant-details span {
@@ -109,8 +127,7 @@ app-chat-widget {
     background: rgba(255, 255, 255, 0.15);
   }
 
-  .icon-button svg,
-  .chat-launcher svg {
+  .icon-button svg {
     width: 20px;
     height: 20px;
     fill: none;
@@ -397,14 +414,15 @@ app-chat-widget {
     transition: transform 150ms ease, box-shadow 150ms ease;
   }
 
+  .organization-logo--launcher {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
   .chat-launcher:hover {
     box-shadow: 0 11px 30px rgba(26, 65, 128, 0.4);
     transform: translateY(-2px);
-  }
-
-  .chat-launcher svg {
-    width: 23px;
-    height: 23px;
   }
 
   @keyframes chat-panel-in {
