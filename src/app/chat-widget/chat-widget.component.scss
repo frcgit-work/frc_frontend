@@ -220,6 +220,12 @@ app-chat-widget {
     font-weight: 700;
   }
 
+  .related-news__item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
   .related-news__link {
     color: var(--chat-primary-dark);
     font-size: 12px;
@@ -357,10 +363,18 @@ app-chat-widget {
     font-weight: 700;
   }
 
+  .question-composer__input-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+  }
+
   .question-composer__input {
     width: 100%;
+    min-width: 0;
     min-height: 58px;
     max-height: 110px;
+    flex: 1;
     resize: vertical;
     padding: 9px 11px;
     border: 1px solid #d7e1ef;
@@ -375,6 +389,32 @@ app-chat-widget {
   .question-composer__input:focus {
     border-color: var(--chat-primary);
     outline: 2px solid rgba(41, 87, 164, 0.14);
+  }
+
+  .question-composer__send {
+    min-width: 64px;
+    align-self: stretch;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--chat-primary);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .question-composer__send:hover:not(:disabled),
+  .question-composer__send:focus-visible {
+    background: var(--chat-primary-dark);
+    outline: 2px solid rgba(41, 87, 164, 0.22);
+    outline-offset: 2px;
+  }
+
+  .question-composer__send:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
   }
 
   .question-composer__hint {

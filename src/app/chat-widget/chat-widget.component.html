@@ -43,29 +43,39 @@
         </div>
 
         <article
-          *ngIf="message.relatedNews || message.newsLoading || message.newsError"
+          *ngIf="message.relatedNews?.length || message.newsLoading || message.newsError"
           class="related-news"
           aria-live="polite"
         >
-          <span class="related-news__label">Сайтын хамгийн сүүлийн мэдээ</span>
-          <a
-            *ngIf="message.relatedNews"
-            class="related-news__link"
-            [routerLink]="['/view', message.relatedNews.iDs]"
-          >
-            {{ message.relatedNews.subject }}
-          </a>
-          <time *ngIf="message.relatedNews?.ognoo" class="related-news__date">
-            {{ message.relatedNews?.ognoo | date: 'yyyy.MM.dd' }}
-          </time>
+          <span class="related-news__label">{{ message.relatedNewsLabel || 'Холбоотой мэдээ' }}</span>
+          <div *ngFor="let news of message.relatedNews" class="related-news__item">
+            <a class="related-news__link" [routerLink]="['/view', news.iDs]">
+              {{ news.subject }}
+            </a>
+            <time *ngIf="news.ognoo" class="related-news__date">
+              {{ news.ognoo | date: 'yyyy.MM.dd' }}
+            </time>
+          </div>
           <p *ngIf="message.newsLoading" class="related-news__state">Мэдээг ачаалж байна...</p>
-          <p *ngIf="message.newsError && !message.relatedNews" class="related-news__state">
+          <p *ngIf="message.newsError && !message.relatedNews?.length" class="related-news__state">
             Одоогоор мэдээ авах боломжгүй байна.
           </p>
         </article>
+
+        <section *ngIf="message.suggestedFaqs?.length" class="faq-picker faq-picker--suggested" aria-label="Ойролцоо түгээмэл асуултууд">
+          <p class="faq-picker__title">Ойролцоо асуултууд</p>
+          <button
+            *ngFor="let faq of message.suggestedFaqs"
+            type="button"
+            class="faq-picker__option faq-picker__question"
+            (click)="selectQuestion(faq)"
+          >
+            {{ faq.question }}
+          </button>
+        </section>
       </ng-container>
 
-      <section *ngIf="!selectedCategory" class="faq-picker" aria-label="Түгээмэл асуултын ангиллууд">
+      <section *ngIf="!selectedCategory && showQuestionPicker" class="faq-picker" aria-label="Түгээмэл асуултын ангиллууд">
         <p class="faq-picker__title">Ангилал сонгоно уу</p>
         <button
           *ngFor="let category of categories"
@@ -100,20 +110,27 @@
 
     </div>
 
-    <label class="question-composer">
-      <span class="question-composer__label">Асуултаа текстээр бичнэ үү</span>
+    <form class="question-composer" (ngSubmit)="submitQuestion()">
+      <label class="question-composer__label" for="chat-question">Асуултаа энд бичнэ үү</label>
+      <div class="question-composer__input-row">
       <textarea
         [(ngModel)]="questionDraft"
+        name="questionDraft"
+        id="chat-question"
         class="question-composer__input"
         rows="2"
         maxlength="1000"
-        aria-label="Текстээр асуулт бичих"
         placeholder="Асуух зүйлээ энд бичнэ үү..."
+        (keydown.enter)="submitOnEnter($event)"
       ></textarea>
+      <button class="question-composer__send" type="submit" [disabled]="!questionDraft.trim()" aria-label="Асуулт илгээх">
+        Илгээх
+      </button>
+      </div>
       <span class="question-composer__hint">
-        Messenger нээгдсэний дараа хуулсан асуултаа буулган илгээнэ үү.
+        Enter дарж илгээнэ. Шинэ мөр оруулахдаа Shift+Enter дарна уу.
       </span>
-    </label>
+    </form>
 
     <a
       class="messenger-contact"
