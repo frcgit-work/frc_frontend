@@ -170,8 +170,9 @@ export class ChatWidgetComponent implements AfterViewChecked {
     this.shouldScroll = true;
   }
 
-  submitOnEnter(event: KeyboardEvent): void {
-    if (event.shiftKey) {
+  submitOnEnter(event: Event): void {
+    const keyboardEvent = event as KeyboardEvent;
+    if (keyboardEvent.shiftKey) {
       return;
     }
 
