@@ -248,23 +248,37 @@
                 <div id="offcanvas-nav" uk-offcanvas="overlay: true">
                     <div class="uk-offcanvas-bar">
                         <button class="uk-offcanvas-close" type="button" uk-close></button>
+                        <button class="menu-script-toggle menu-script-toggle--offcanvas" type="button"
+                            [attr.aria-pressed]="traditionalMenuMode"
+                            [disabled]="isConvertingTraditionalMenu || siteinfo?.lang !== 'mn' || !menulist?.length"
+                            (click)="toggleTraditionalMenu()">
+                            {{isConvertingTraditionalMenu ? 'Хөрвүүлж байна…' : traditionalMenuMode ? 'Кирилл' : 'Монгол бичиг'}}
+                        </button>
                         <ul class="uk-nav uk-nav-default">
                             <ng-container *ngFor="let item of parentmenu(0)">
                                 <li class="uk-active uk-nav-header">
                                     <a [href]="'/#/'+item.menutid+';id='+item.iDs" onclick="test()"
-                                        *ngIf="item.count===0 && item.menulink===''">{{item.menuname}}</a>
+                                        *ngIf="item.count===0 && item.menulink===''">
+                                        <span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span>
+                                    </a>
                                     <a href="{{item.menulink}}" onclick="test()"
-                                        *ngIf="item.count===0 && item.menulink!==''">{{item.menuname}}</a>
+                                        *ngIf="item.count===0 && item.menulink!==''">
+                                        <span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span>
+                                    </a>
                                     <a href="#" *ngIf="item.count>0 && item.menulink===''"
-                                        onclick="test()">{{item.menuname}}</a>
+                                        onclick="test()">
+                                        <span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span>
+                                    </a>
                                     <a href="{{item.menulink}}" onclick="test()"
-                                        *ngIf="item.count>0 && item.menulink!==''">{{item.menuname}}</a>
+                                        *ngIf="item.count>0 && item.menulink!==''">
+                                        <span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span>
+                                    </a>
                                 </li>
                                 <li class="ml-2" *ngFor="let sub1 of parentmenu(item.iDs)">
                                     <a href="{{sub1.menulink}}" onclick="test()"
-                                        *ngIf="sub1.count===0 && sub1.menulink!=='' && sub1.target ===''">{{sub1.menuname}}</a>
+                                        *ngIf="sub1.count===0 && sub1.menulink!=='' && sub1.target ===''"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub1)}}</span></a>
                                     <a [href]="'/#/'+sub1.menutid+';id='+sub1.iDs" onclick="test()"
-                                        *ngIf="sub1.count===0 && sub1.menulink==='' && sub1.target ===''">{{sub1.menuname}}</a>
+                                        *ngIf="sub1.count===0 && sub1.menulink==='' && sub1.target ===''"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub1)}}</span></a>
                                 </li>
                             </ng-container>
                         </ul>
@@ -272,7 +286,7 @@
                     </div>
                 </div>
 
-                <nav class="navbar navbar-expand-lg">
+                <nav class="navbar navbar-expand-lg" [class.traditional-menu-mode]="traditionalMenuMode">
                     <!-- logo Start-->
 
                     <!-- logo End-->
@@ -298,7 +312,8 @@
                                 [style.background-color]="item.bgcolor">
                                 <a (click)="menu='submenu'+item.iDs"
                                     class="px-2 py-3 ml-0 text-center text-sm text-uppercase" *ngIf="item.count>0"
-                                    [style.color]="item.textcolor">{{item.menuname}}
+                                    [style.color]="item.textcolor">
+                                    <span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span>
                                     <span class="submenu-toggler"
                                         *ngIf="menu!=='submenu'+item.iDs || menu.split('-',1)[0]!=='subsubmenu'+item.iDs"
                                         (click)="menu='submenu'+item.iDs"><i
@@ -309,20 +324,20 @@
                                 </a>
                                 <a [href]="'/#/'+item.menutid+';id='+item.iDs" (click)="test()" id="submenu"
                                     onclick="test()" class="px-2 py-3 ml-0 text-center text-sm text-uppercase"
-                                    *ngIf="item.count===0 && item.menulink===''">{{item.menuname}}</a>
+                                    *ngIf="item.count===0 && item.menulink===''"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span></a>
                                 <a [routerLink]="item.menulink" target="{{item.target}}" (click)="test()"
                                     onclick="test()" id="submenu"
                                     class="px-2 py-3 ml-0 text-center text-sm text-uppercase"
-                                    *ngIf="item.count===0 && item.menulink!=='' && item.target ===''">{{item.menuname}}</a>
+                                    *ngIf="item.count===0 && item.menulink!=='' && item.target ===''"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span></a>
                                 <a href="{{item.menulink}}" target="{{item.target}}" (click)="test()" onclick="test()"
                                     id="submenu" class="px-2 py-3 ml-0 text-center text-sm text-uppercase"
-                                    *ngIf="item.count===0 && item.menulink!=='' && item.target!==''">{{item.menuname}}</a>
+                                    *ngIf="item.count===0 && item.menulink!=='' && item.target!==''"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(item)}}</span></a>
                                 <ul class="sub-menu" *ngIf="item.count>0"
                                     [ngClass]="mobile? menu==='submenu'+item.iDs || menu.split('-',1)[0]==='subsubmenu'+item.iDs ?'d-block':'d-none':''">
                                     <li *ngFor="let sub1 of parentmenu(item.iDs)"
                                         [ngClass]="sub1.count>0? 'menu-item-has-children': ''">
                                         <a href="#" (click)="menu='subsubmenu'+item.iDs+'-'+sub1.iDs"
-                                            *ngIf="sub1.count>0" class="text-sm text-uppercase">{{sub1.menuname}}
+                                            *ngIf="sub1.count>0" class="text-sm text-uppercase"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub1)}}</span>
                                             <span class="submenu-toggler"
                                                 *ngIf="menu!=='subsubmenu'+item.iDs+'-'+sub1.iDs"
                                                 (click)="menu='subsubmenu'+item.iDs+'-'+sub1.iDs"><i
@@ -333,23 +348,31 @@
                                         </a>
                                         <a [href]="'/#/'+sub1.menutid+';id='+sub1.iDs" (click)="test()" id="submenu"
                                             onclick="test()" *ngIf="sub1.count===0 && sub1.menulink===''"
-                                            class="text-sm text-uppercase">{{sub1.menuname}}</a>
+                                            class="text-sm text-uppercase"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub1)}}</span></a>
                                         <a href="{{sub1.menulink}}" target="{{sub1.target}}" (click)="test()"
                                             id="submenu" onclick="test()" *ngIf="sub1.count===0 && sub1.menulink!==''"
                                             class="text-sm text-uppercase"
-                                            (click)="link(sub1.menulink)">{{sub1.menuname}}</a>
+                                            (click)="link(sub1.menulink)"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub1)}}</span></a>
                                         <ul class="sub-menu" *ngIf="sub1.count>0"
                                             [ngClass]="mobile? menu==='subsubmenu'+item.iDs+'-'+sub1.iDs?'d-block':'d-none':''">
                                             <li *ngFor="let sub2 of parentmenu(sub1.iDs)">
                                                 <a [href]="'/#/'+sub2.menutid+';id='+sub2.iDs"
-                                                    class="text-uppercase">{{sub2.menuname}}</a>
+                                                    class="text-uppercase"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub2)}}</span></a>
                                                 <a [href]="sub2.menulink" target="{{sub2.target}}"
                                                     *ngIf="sub2.count===0 && sub2.menulink!==''" class="text-uppercase"
-                                                    (click)="link(sub2.menulink)">{{sub2.menuname}}</a>
+                                                    (click)="link(sub2.menulink)"><span class="main-menu-label" [class.main-menu-label--vertical]="traditionalMenuMode">{{menuLabel(sub2)}}</span></a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="menu-script-toggle-item">
+                                <button class="menu-script-toggle" type="button"
+                                    [attr.aria-pressed]="traditionalMenuMode"
+                                    [disabled]="isConvertingTraditionalMenu || siteinfo?.lang !== 'mn' || !menulist?.length"
+                                    (click)="toggleTraditionalMenu()">
+                                    {{isConvertingTraditionalMenu ? 'Хөрвүүлж байна…' : traditionalMenuMode ? 'Кирилл' : 'Монгол бичиг'}}
+                                </button>
                             </li>
                         </ul>
                     </div>

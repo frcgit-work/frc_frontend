@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
  loadcount = 0;
  listcount = 0;
  searchtext: any;
+ traditionalMenuMode = false;
+ isConvertingTraditionalMenu = false;
+ private traditionalMenuLabels: Record<number, string> = {};
 
  constructor(
   private headerService: HeaderService,
@@ -66,6 +69,8 @@ export class HeaderComponent implements OnInit {
  changelang(lang: any) {
   this.router.navigate(['home', { lang: lang }]);
   this.siteinfo = { lang: lang, site: 'main' };
+  this.traditionalMenuMode = false;
+  this.traditionalMenuLabels = {};
   this.loadMenu();
  }
 
@@ -104,6 +109,39 @@ export class HeaderComponent implements OnInit {
 
  parentmenu(menuid: number) {
   return this.menulist?.filter((x) => x.parentid === menuid && x.menuvisible === 1);
+ }
+
+ menuLabel(item: any): string {
+  return this.traditionalMenuMode ? this.traditionalMenuLabels[item.iDs] || item.menuname : item.menuname;
+ }
+
+ async toggleTraditionalMenu(): Promise<void> {
+  if (this.traditionalMenuMode) {
+   this.traditionalMenuMode = false;
+   return;
+  }
+
+  if (this.siteinfo?.lang !== 'mn' || !this.menulist?.length || this.isConvertingTraditionalMenu) {
+   return;
+  }
+
+  this.isConvertingTraditionalMenu = true;
+  try {
+   const { convert } = await import('@gege-mn/gege-converter');
+   if (this.siteinfo?.lang !== 'mn') {
+    return;
+   }
+
+   this.traditionalMenuLabels = (this.menulist || []).reduce((labels: Record<number, string>, item: any) => {
+    labels[item.iDs] = convert(item.menuname || '');
+    return labels;
+   }, {});
+   this.traditionalMenuMode = true;
+  } catch {
+   this.traditionalMenuMode = false;
+  } finally {
+   this.isConvertingTraditionalMenu = false;
+  }
  }
 
  link(url: any) {

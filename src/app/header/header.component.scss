@@ -90,6 +90,85 @@
     min-width: 20rem;
     color: #fff;
 }
+
+.menu-script-toggle {
+    border: 1px solid #2957A4;
+    border-radius: 4px;
+    background: #fff;
+    color: #2957A4;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.2;
+    padding: 5px 9px;
+    white-space: nowrap;
+}
+
+.menu-script-toggle-item {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.menu-script-toggle:hover,
+.menu-script-toggle:focus-visible {
+    background: #2957A4;
+    color: #fff;
+}
+
+.menu-script-toggle:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.menu-script-toggle--offcanvas {
+    margin: 0 0 12px;
+}
+
+.main-menu-label--vertical {
+    display: inline-block;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    font-family: 'Mongolian Baiti', 'Noto Sans Mongolian', 'Mongolian White', serif;
+    font-size: 14px;
+    line-height: 1.15;
+    text-transform: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.traditional-menu-mode .navbar-nav {
+    align-items: stretch;
+}
+
+.traditional-menu-mode .navbar-parent > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 108px;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
+.traditional-menu-mode .navbar-parent > a > .main-menu-label--vertical {
+    height: 96px;
+    max-width: 42px;
+}
+
+.traditional-menu-mode .navbar-parent .submenu-toggler {
+    writing-mode: horizontal-tb;
+    margin-left: 3px;
+}
+
+#offcanvas-nav .main-menu-label--vertical {
+    max-height: 96px;
+    max-width: 42px;
+}
+
+@media (max-width: 991.98px) {
+    .traditional-menu-mode .navbar-nav {
+        align-items: flex-start;
+    }
+}
 .header-02 .access-btn .btn-search {
     color: #fff;
 }
