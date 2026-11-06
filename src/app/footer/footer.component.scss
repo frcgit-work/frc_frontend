@@ -44,6 +44,11 @@ footer .widget .footer-title:after {
 
 .fixed-head > ul > li.parliament-shortcut > a {
     top: calc(20% + 360px);
+    right: -85px;
+}
+
+.fixed-head > ul > li.parliament-shortcut > a:hover {
+    right: 0;
 }
 
 .fixed-head > ul > li.parliament-shortcut > a > img {
