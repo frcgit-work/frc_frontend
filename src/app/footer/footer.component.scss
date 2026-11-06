@@ -41,3 +41,14 @@ footer .widget .footer-title:after {
     width: 20px!important;
     height: 20px!important;
 }
+
+.fixed-head > ul > li.parliament-shortcut > a {
+    top: calc(20% + 360px);
+}
+
+.fixed-head > ul > li.parliament-shortcut > a > img {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    object-fit: contain;
+}
